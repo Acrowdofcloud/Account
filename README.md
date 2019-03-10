@@ -8,7 +8,9 @@ This program was designed to implement a simple accounting system to help people
 
 Assumptions:
 
-1. Users' inputs are always correct
+1.  Users' inputs are always correct
+2.  Limit of records?
+3.  when to alert?
 
 ## Features
 1.  Add income or expense record(amount, date, type, account)
