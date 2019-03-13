@@ -3,6 +3,8 @@
 #include <iomanip>
 #include <fstream>
 #include <string>
+
+
 using namespace std;
 
 struct record{
@@ -13,19 +15,6 @@ struct record{
     double amount;
     char type;
 };
-
-void printrecords(struct record records[]){
-    for (int i = 0; i <20000; i++){
-        if (records[i].exist == true){
-            cout << setw(8) << records[i].date << " ";
-            cout << setw(2) << records[i].type;
-            cout << setw(20) << records[i].usage;
-            printf("  %.2f", records[i].amount);
-            cout << endl;
-        }
-    }
-    cout << "\n";
-}
 
 void writetorecord(double budget, struct record records[]){
     ofstream fout;
@@ -42,8 +31,26 @@ void writetorecord(double budget, struct record records[]){
     fout.close();
 }
 
+void printrecords(struct record records[]){
+    int index = 1;
+    for (int i = 0; i <20000; i++){
+        if (records[i].exist == true){
+            cout << index << ". ";
+            cout << setw(8) << records[i].date << " ";
+            cout << setw(2) << records[i].type;
+            cout << setw(20) << records[i].usage;
+            printf("  %.2f", records[i].amount);
+            cout << endl;
+            index++;
+        }
+    }
+    cout << "\n";
+}
+
+
 void alarm(double budget, struct record records[]){
-    double totalincome, totalexpense;
+    double totalincome = 0;
+    double totalexpense = 0;
     for (int i = 0; i<20000; i++){
         if (records[i].exist == true){
             if (records[i].type == 'R'){
@@ -54,12 +61,16 @@ void alarm(double budget, struct record records[]){
             }
         }
     }
-    if (totalexpense >= budget*0.7){
-        cout << "**************************************************" << endl;
-        cout << "Alert! Your expense this month is " << setprecision(3) <<  totalexpense/budget * 100 << "% of your budget!" << endl;
-        cout << "**************************************************" << endl;
-    }
+    cout << "Total income : $";
+    printf("%.2f\n", totalincome);
+    cout << "Total expense: $";
+    printf("%.2f\n", totalexpense);
 
+    if (totalexpense >= budget*0.7){
+        cout << "***************************************************************************" << endl;
+        cout << "Alert! Your expense this month is " << setprecision(3) <<  totalexpense/budget * 100 << "% of your budget!" << endl;
+    }
+    cout << "***************************************************************************" << endl;
 }
 
 int main(){
@@ -69,9 +80,9 @@ int main(){
     char temptype;
     int command;
     int x;
-    struct record records[20000];
 
     while (true){
+        struct record records[20000] = {};
         ifstream fin;
         int index = 0;
         fin.open("record.txt");
@@ -94,11 +105,14 @@ int main(){
         }
 
         cout << "What do you want to do?\n";
-        cout << "1. Display records 2. New Expense 3. New Income 4. Edit Record 5. Statistic reports 6. Change budget 7. Exit" << endl;
+        cout << "1. Display records 2. New Expense      3. New Income       4. Edit Record\n";
+        cout << "5. Delete Record   6. Statistic report 7. Change budget    8. Exit" << endl;
+        cout << "***************************************************************************\n";
         cin >> command;
 
         if (command == 1){
             printrecords(records);
+            alarm(budget, records);
         }
         if (command == 2){
             temptype = 'E';
@@ -117,8 +131,8 @@ int main(){
             }
             printrecords(records);
             cout << "\n";
+            alarm(budget, records);
         }
-
         if (command == 3){
             temptype = 'R';
             cout << "Amount?\n";
@@ -136,16 +150,28 @@ int main(){
 
             printrecords(records);
             cout << "\n";
+            alarm(budget, records);
         }
+        if (command == 5){
+            int del;
+            cout << "Which record?\n";
+            cout << "0. Return\n";
+            printrecords(records);
+            cin >> del;
+            if(del != 0){
+                records[del-1].exist = false;
+                cout << "***************************************************************************\n";
+                cout << "Record deleted\n";
+                cout << "***************************************************************************\n";
+            }
 
-
-
-        if (command == 7){
+        }
+        if (command == 8){
             break;
         }
 
-        alarm(budget, records);
         writetorecord(budget, records);
     }
     return 0;
 }
+
