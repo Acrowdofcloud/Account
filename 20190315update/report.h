@@ -38,10 +38,10 @@ void profitstat(double budget, double statexpense, struct record records[]){
         cout << "Your expense this month is " << setprecision(4) << (statexpense/budget) * 100 << "% of your budget.\n";
     }
     if (statincome < statexpense){
-        cout << "You have a net loss of $" << statexpense - statincome  << " this month.\n";
+        cout << "You have a net loss of $" << setprecision(8) << statexpense - statincome  << " this month.\n";
     }
     else if(statincome > statexpense){
-        cout << "You have a new profit of $" << statincome - statexpense << " this month.\n";
+        cout << "You have a new profit of $" << setprecision(8) << statincome - statexpense << " this month.\n";
     }
     else{
         cout << "You are even this month.\n";
