@@ -1,0 +1,5 @@
+Entertainment	       0		0%
+    Transport	      10		1.96%
+         Food	     500		98%
+         Bill	       0		0%
+       Others	       0		0%
