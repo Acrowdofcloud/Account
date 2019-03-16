@@ -1,0 +1,11 @@
+Expenses for 201903: 
+Entertainment	              0                -nan%
+    Transport	              0                -nan%
+         Food	              0                -nan%
+         Bill	              0                -nan%
+       Others	              0                -nan%
+***************************************************************************
+Budget: 10200
+Total expense:         0       Total income:   15000
+Your expense in 201903 is 0% of your budget.
+You have a new profit of $15000 in 201903.

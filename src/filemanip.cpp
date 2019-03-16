@@ -24,7 +24,7 @@ void writetorecord(string todaymonth, string filename, struct record records[]){
     fout.close();
 }
 
-void writeexpense(string todaymonth, double statincome, double statexpense, double Entertainment, double Transport, double Food, double Bill, double Others, double budget){
+void writereport(string todaymonth, double statincome, double statexpense, double Entertainment, double Transport, double Food, double Bill, double Others, double budget){
     string filename, cat;
     filename = todaymonth + "stat.txt";
     system(("rm " + todaymonth + "stat.txt").c_str());

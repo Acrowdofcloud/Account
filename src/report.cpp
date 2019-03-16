@@ -35,12 +35,9 @@ void profitstat(string todaymonth, double budget, double statexpense, struct rec
             }
         }
     }
-    if (statexpense == 0){
-        cout << "You've got no expenses for this month.\n";
-    }
-    else{
-        writeexpense(todaymonth, statincome, statexpense, Entertainment, Transport, Food, Bill, Others, budget);
-    }
+
+    writereport(todaymonth, statincome, statexpense, Entertainment, Transport, Food, Bill, Others, budget);
+
     cout << "***************************************************************************\n";
 
 
