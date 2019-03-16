@@ -10,7 +10,7 @@ to manage their incomes and expenses, in order to achieve better self-control on
 Assumptions:
 
 1.  Users' inputs are always correct
-2.  Limit of records will be 20000
+2.  Limit of records will be 2000 each Month
 3.  This system is an executable that works in both Linux and Windows environment.
 4.  
 
