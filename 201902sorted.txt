@@ -1,0 +1,4 @@
+20190207         Bank  R              Salary   10000 N
+20190210         Bank  E       Entertainment    9900 Testing
+20190210         Bank  R              Others   10000 N
+20190211         Cash  E                Food     100 N

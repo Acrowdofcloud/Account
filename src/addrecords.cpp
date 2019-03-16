@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include "structs.h"
+#include "getdate.h"
 
 using namespace std;
 
@@ -11,7 +12,7 @@ char temptype;
 
 string typeofexpense(){
     int type;
-    cout << "1. Entertainment   2. Transport   3. Food   4. Bill   5. Others\n";
+    cout << "0. Return   1. Entertainment   2. Transport   3. Food   4. Bill   5. Others\n";
     cin >> type;
     if (type == 1){
         return "Entertainment";
@@ -28,12 +29,14 @@ string typeofexpense(){
     if (type == 5){
         return "Others";
     }
-    return "";
+    if (type == 0){
+        return "";
+    }
 }
 
 string typeofincome(){
     int type;
-    cout << "1. Salary   2. others\n";
+    cout << "0. Return   1. Salary   2. others\n";
     cin >> type;
     if (type == 1){
         return "Salary";
@@ -41,76 +44,96 @@ string typeofincome(){
     else if (type == 2){
         return "Others";
     }
-    return "";
+    else{
+        return "";
+    }
 }
 
-void addexpense(string todaydate, struct record &records){
+void addexpense(string todaymonth, string todaydate, struct record &records){
     string tempnote;
     temptype = 'E';
+    tempdate = todaydate;
     tempusage = typeofexpense();
-    int account = 0;
-    cout << "Amount?\t";
-    cin >> tempamount;
-    cout << "1. Cash   2. Bank   3. Credit_Card\n";
-    cin >> account;
-    if (account == 1){
-        tempaccount = "Cash";
-    }
-    else if (account == 2){
-        tempaccount = "Bank";
-    }
-    else{
-        tempaccount = "Credit_Card";
-    }
+
+    if (tempusage != ""){
+
+        if (todaymonth != getmonth()){
+        cout << "Date?\n";
+        cin >> tempdate;
+        }
+
+        int account = 0;
+        cout << "Amount?\t";
+        cin >> tempamount;
+        cout << "1. Cash   2. Bank   3. Credit_Card\n";
+        cin >> account;
+        if (account == 1){
+            tempaccount = "Cash";
+        }
+        else if (account == 2){
+            tempaccount = "Bank";
+        }
+        else{
+            tempaccount = "Credit_Card";
+        }
 
 
-    cin.ignore();
-    cout << "Notes: ";
-    getline(cin, tempnote);
-    if (tempnote == ""){
-        tempnote = "N";
-    }
-    if(tempamount != 0){
-        records.date = todaydate;
-        records.amount = tempamount;
-        records.exist = true;
-        records.usage = tempusage;
-        records.type = temptype;
-        records.notes = tempnote;
-        records.account = tempaccount;
+        cin.ignore();
+        cout << "Notes: ";
+        getline(cin, tempnote);
+        if (tempnote == ""){
+            tempnote = "N";
+        }
+        if(tempamount != 0){
+            records.date = tempdate;
+            records.amount = tempamount;
+            records.exist = true;
+            records.usage = tempusage;
+            records.type = temptype;
+            records.notes = tempnote;
+            records.account = tempaccount;
+        }
     }
 }
 
-void addincome(string todaydate, struct record &records){
+void addincome(string todaymonth, string todaydate, struct record &records){
     string tempnote;
+    tempdate = todaydate;
     int account;
     temptype = 'R';
     tempusage = typeofincome();
-    cout << "Amount?\t";
-    cin >> tempamount;
-    cout << "1. Cash   2. Bank\n";
-    cin >> account;
-    if (account == 1){
-        tempaccount = "Cash";
-    }
-    if (account == 2){
-        tempaccount = "Bank";
-    }
+    if (tempusage != ""){
+        if (todaymonth != getmonth()){
+        cout << "Date?\n";
+        cin >> tempdate;
+        }
+
+        cout << "Amount?\t";
+        cin >> tempamount;
+        cout << "1. Cash   2. Bank\n";
+        cin >> account;
+        if (account == 1){
+            tempaccount = "Cash";
+        }
+        if (account == 2){
+            tempaccount = "Bank";
+        }
 
 
-    cin.ignore();
-    cout << "Notes: ";
-    getline(cin, tempnote);
-    if (tempnote == ""){
-        tempnote = "N";
-    }
-    if(tempamount != 0){
-        records.date = todaydate;
-        records.amount = tempamount;
-        records.exist = true;
-        records.usage = tempusage;
-        records.type = temptype;
-        records.notes = tempnote;
-        records.account = tempaccount;
+        cin.ignore();
+        cout << "Notes: ";
+        getline(cin, tempnote);
+        if (tempnote == ""){
+            tempnote = "N";
+        }
+        if(tempamount != 0){
+            records.date = tempdate;
+            records.amount = tempamount;
+            records.exist = true;
+            records.usage = tempusage;
+            records.type = temptype;
+            records.notes = tempnote;
+            records.account = tempaccount;
+        }
     }
 }

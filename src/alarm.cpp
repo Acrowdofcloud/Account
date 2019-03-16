@@ -6,12 +6,11 @@
 
 using namespace std;
 
-double calin(struct record records[]){
+double calin(string todaymonth, struct record records[]){
     int tempincome = 0;
-    string month = getmonth();
     for (int i = 0; i<2000; i++){
         if (records[i].exist == true){
-            if (records[i].date.substr(0, 6) == month){
+            if (records[i].date.substr(0, 6) == todaymonth){
                 if (records[i].type == 'R'){
                     tempincome += records[i].amount;
                 }
@@ -21,12 +20,11 @@ double calin(struct record records[]){
     return tempincome;
 }
 
-double calout(struct record records[]){
+double calout(string todaymonth, struct record records[]){
     int tempexpense = 0;
-    string month = getmonth();
     for (int i = 0; i<2000; i++){
         if (records[i].exist == true){
-            if (records[i].date.substr(0, 6) == month){
+            if (records[i].date.substr(0, 6) == todaymonth){
                 if (records[i].type == 'E'){
                     tempexpense += records[i].amount;
                 }
@@ -36,9 +34,9 @@ double calout(struct record records[]){
     return tempexpense;
 }
 
-void alarm(double budget, struct record records[]){
-    double totalincome = calin(records);
-    double totalexpense = calout(records);
+void alarm(string todaymonth, double budget, struct record records[]){
+    double totalincome = calin(todaymonth, records);
+    double totalexpense = calout(todaymonth, records);
     cout << "Total income : $";
     printf("%.2f\n", totalincome);
     cout << "Total expense: $";

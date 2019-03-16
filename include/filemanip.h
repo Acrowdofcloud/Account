@@ -2,7 +2,7 @@
 
 #include <structs.h>
 
-void writetorecord(struct record records[]);
+void writetorecord(std::string todaymonth, std::string filename, struct record records[]);
 
-void writeexpense(double statexpense, double Entertainment, double Transport, double Food, double Bill, double Others, double budget);
+void writeexpense(std::string todaymonth, double statincome, double statexpense, double Entertainment, double Transport, double Food, double Bill, double Others, double budget);
 

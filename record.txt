@@ -1,2 +1,0 @@
-20190315         Cash  E                Food     500N
-20190316         Cash  E           Transport      10N

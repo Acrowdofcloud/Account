@@ -12,117 +12,126 @@
 using namespace std;
 
 int main(){
-    string todaydate = gettime(); //getdate.h
+    string todaydate = gettime();
+    string todaymonth = getmonth();
 	double budget{ 0 };
-    int command;
-    int x;
+    int command, x, index = 0;
     ifstream fin;
-    struct record records[2000] = {};
+    ofstream fout;
+    struct record monthrecords[2000] = {};
+    string filename = todaymonth + ".txt";
+
+    fin.open(filename);
+    if (fin.fail()){
+        system(("touch " + filename).c_str());
+        system(("sort -k1 -k2 " + filename + " >> " + todaymonth + "sorted.txt").c_str());
+        exit(1);
+    }
+    fin.close();
+
+    fin.open((todaymonth + "sorted.txt"));
+    while (fin >> monthrecords[index].date >> monthrecords[index].account >> monthrecords[index].type >> monthrecords[index].usage >> monthrecords[index].amount >> monthrecords[index].notes){
+        monthrecords[index].exist = true;
+        index++;
+    }
+    fin.close();
 
     fin.open("budget.txt");
     fin >> budget;
     fin.close();
     if (budget == 0){
-        cout << "Whats your monthly budget?";
+        printf("What is your monthly budget?\n");
         cin >> budget;
+        fout.open("budget.txt");
+        fout << budget;
+        fout.close();
     }
 
-    int index = 0;
-    fin.open("sortedrecord.txt");
-    while (fin >> records[index].date >> records[index].account >> records[index].type >> records[index].usage >> records[index].amount >> records[index].notes){
-        records[index].exist = true;
-        index++;
-    }
-    fin.close();
-    printallrecords(records);
-    alarm(budget, records);
+    printallrecords(todaymonth, monthrecords);
 
     while (true){
         for (int i = 0; i < 2000; i++){
-            records[i].exist = false;
-        }
-        fin.open("budget.txt");
-        fin >> budget;
-        fin.close();
-        if (budget == 0){
-            cout << "Whats your monthly budget?";
-            cin >> budget;
-        }
-        index = 0;
-        fin.open("sortedrecord.txt");
-        while (fin >> records[index].date >> records[index].account >> records[index].type >> records[index].usage >> records[index].amount >> records[index].notes){
-            records[index].exist = true;
-            index++;
-        }
-        fin.close();
-
-        for (int i = 0; i<2000; i++){
-            if (records[i].exist == false){
+            if (!monthrecords[i].exist){
                 x = i;
                 break;
             }
         }
 
         cout << "What do you want to do?\n";
+        cout << "0. Exit\n";
         cout << "1. Display records 2. New Expense      3. New Income       4. Edit Record\n";
-        cout << "5. Delete Record   6. Statistic report 7. Change budget    0. Exit" << endl;
+        cout << "5. Delete Record   6. Statistic report 7. Change budget    8. Change month" << endl;
         cout << "***************************************************************************\n";
         cin >> command;
 
-        if (command == 1){
-            printallrecords(records); //recordmanip.h
-            alarm(budget, records); //alarm.h
-        }
-        if (command == 2){
-            addexpense(todaydate, records[x]); //addrecords.h
-            printallrecords(records); //recordmanip.h
-            cout << "\n";
-            alarm(budget, records); //alarm.h
-        }
-        if (command == 3){
-            addincome(todaydate, records[x]); //addrecords.h
-            printallrecords(records); //recordmanip.h
-            cout << "\n";
-            alarm(budget, records); //alarm.h
-        }
-        if (command == 4){
-            int edit;
-            cout << "Which record?\n";
-            printallrecords(records); //recordmanip.h
-            cin >> edit;
-            editrecord(records[edit-1]); //recordmanip.h
-        }
-        if (command == 5){
-            int del;
-            cout << "Which record?\n";
-            cout << "0. Return\n";
-            printallrecords(records); //recordmanip.h
-            cin >> del;
-            if (del != 0){
-                deleterecord(records[del - 1]); //recordmanip.h
-            }
-        }
-        if (command == 6){
-            report(budget, records); //report.h
-        }
-        if (command == 7){
-          cout << "New budget? ";
-          cin >> budget;
-        }
         if (command == 0){
             break;
         }
+        else if (command == 1){
+            printallrecords(todaymonth, monthrecords);
+            alarm(todaymonth, budget, monthrecords);
+        }
+        else if(command == 2){
+            addexpense(todaymonth, todaydate, monthrecords[x]);
+            printallrecords(todaymonth, monthrecords);
+        }
+        else if(command == 3){
+            addincome(todaymonth, todaydate, monthrecords[x]);
+            printallrecords(todaymonth, monthrecords);
+        }
+        else if(command == 4){
+            int edit;
+            printf("Which record?\n");
+            printallrecords(todaymonth, monthrecords);
+            cin >> edit;
+            editrecord(monthrecords[edit-1]);
+            printallrecords(todaymonth, monthrecords);
+        }
+        else if(command == 5){
+            int del;
+            printf("Which record?\n");
+            printallrecords(todaymonth, monthrecords);
+            cin >> del;
+            deleterecord(monthrecords[del-1]);
+            printallrecords(todaymonth, monthrecords);
+        }
+        else if (command == 6){
+            report(todaymonth, budget, monthrecords);
+        }
+        else if(command == 7){
+            printf("New budget: ");
+            cin >> budget;
+            fout.open("budget.txt");
+            fout << budget;
+            fout.close();
+        }
+        else if(command == 8){
+            printf("Which month? (yyyymm)\n");
+            cin >> todaymonth;
+            fin.open(todaymonth + "sorted.txt");
+            if (fin.fail()){
+                cout << "No records for " << todaymonth << ".\n";
+                todaymonth = getmonth();
+                exit(1);
+            }
+            else{
+                index = 0;
+                filename = todaymonth + ".txt";
+                for (int i = 0; i<2000; i++){
+                    monthrecords[i].exist = false;
+                }
+                while (fin >> monthrecords[index].date >> monthrecords[index].account >> monthrecords[index].type >> monthrecords[index].usage >> monthrecords[index].amount >> monthrecords[index].notes){
+                    monthrecords[index].exist = true;
+                    index++;
+                }
+            }
+            fin.close();
+            printallrecords(todaymonth, monthrecords);
+        }
 
-        system("rm budget.txt");
-        ofstream budout;
-        budout.open("budget.txt");
-        budout << budget;
-        budout.close();
 
-        writetorecord(records); //filemanip.h
-
-        system("rm sortedrecord.txt");
-        system("sort -k1 -k2 record.txt >> sortedrecord.txt");
+        writetorecord(todaymonth, filename, monthrecords);
+        system(("rm " + todaymonth + "sorted.txt").c_str());
+        system(("sort -k1 -k2 " + filename + " >> " + todaymonth + "sorted.txt").c_str());
     }
-    return 0;
 }

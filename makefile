@@ -26,4 +26,4 @@ clean:
 	@echo Clean done!
 
 run:
-	./bin/Debug/$(EXE)
+	./bin/Release/$(EXE)

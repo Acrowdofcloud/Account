@@ -4,7 +4,7 @@
 
 void deleterecord(struct record &records);
 
-void printallrecords(struct record records[]);
+void printallrecords(std::string todaymonth, struct record records[]);
 
 void printsinglerecord(struct record records);
 

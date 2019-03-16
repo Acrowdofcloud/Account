@@ -7,6 +7,6 @@ std::string typeofexpense();
 
 std::string typeofincome();
 
-void addexpense(std::string todaydate, struct record &records);
+void addexpense(std::string todaymonth, std::string todaydate, struct record &records);
 
-void addincome(std::string todaydate, struct record &records);
+void addincome(std::string todaymonth, std::string todaydate, struct record &records);

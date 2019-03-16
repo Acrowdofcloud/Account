@@ -7,10 +7,10 @@
 
 using namespace std;
 
-void writetorecord(struct record records[]){
+void writetorecord(string todaymonth, string filename, struct record records[]){
     ofstream fout;
-    system("rm record.txt");
-    fout.open("record.txt");
+    system(("rm " + filename).c_str());
+    fout.open(filename);
     for (int i = 0; i <2000; i++){
         if (records[i].exist == true){
             fout << setw(8) << records[i].date << " ";
@@ -18,25 +18,38 @@ void writetorecord(struct record records[]){
             fout << setw(2) << records[i].type;
             fout << setw(20) << records[i].usage;
             fout << setw(8) << records[i].amount;
-            fout << records[i].notes << endl;
+            fout << " " << records[i].notes << endl;
         }
     }
     fout.close();
 }
 
-void writeexpense(double statexpense, double Entertainment, double Transport, double Food, double Bill, double Others, double budget){
+void writeexpense(string todaymonth, double statincome, double statexpense, double Entertainment, double Transport, double Food, double Bill, double Others, double budget){
     string filename, cat;
-    filename = getmonth() + "stat.txt";
-    system(("rm " + filename).c_str());
+    filename = todaymonth + "stat.txt";
+    system(("rm " + todaymonth + "stat.txt").c_str());
     ofstream fout;
     fout.open(filename);
-    fout << "Entertainment\t" << setw(8) << Entertainment << "\t\t" << setprecision(3) << (Entertainment/statexpense) * 100 << "%\n";
-    fout << "    Transport\t" << setw(8) << Transport << "\t\t" << setprecision(3) << (Transport/statexpense) * 100 << "%\n";
-    fout << "         Food\t" << setw(8) << Food << "\t\t" << setprecision(3) << (Food/statexpense) * 100 << "%\n";
-    fout << "         Bill\t" << setw(8) << Bill << "\t\t" << setprecision(3) << (Bill/statexpense) * 100 << "%\n";
-    fout << "       Others\t" << setw(8) << Others << "\t\t" <<  setprecision(3) << (Others/statexpense) * 100 << "%\n";
+    fout << "Expenses for " << todaymonth << ": \n";
+    fout << "Entertainment\t" << setw(15) << setprecision(6) << Entertainment << setw(20) << setprecision(3) << (Entertainment/statexpense) * 100 << "%\n";
+    fout << "    Transport\t" << setw(15) << setprecision(6) << Transport << setw(20) << setprecision(3) << (Transport/statexpense) * 100 << "%\n";
+    fout << "         Food\t" << setw(15) << setprecision(6) << Food << setw(20) << setprecision(3) << (Food/statexpense) * 100 << "%\n";
+    fout << "         Bill\t" << setw(15) << setprecision(6) << Bill << setw(20) << setprecision(3) << (Bill/statexpense) * 100 << "%\n";
+    fout << "       Others\t" << setw(15) << setprecision(6) << Others << setw(20) <<  setprecision(3) << (Others/statexpense) * 100 << "%\n";
+    fout << "***************************************************************************\n";
+    fout << "Budget: " << setprecision(6) << budget;
+    fout << "\nTotal expense: " << setw(9) << setprecision(6) << statexpense << "       Total income:" << setw(8) << setprecision(6) << statincome << endl;
+    fout << "Your expense in " << todaymonth << " is " << setprecision(2) << (statexpense/budget) * 100 << "% of your budget.\n";
+    if (statincome < statexpense){
+        fout << "You have a net loss of $" << setprecision(8) << statexpense - statincome  << " in " << todaymonth << ".\n";
+    }
+    else if(statincome > statexpense){
+        fout << "You have a new profit of $" << setprecision(8) << statincome - statexpense << " in " << todaymonth << ".\n";
+    }
+    else{
+        fout << "You are even this month.\n";
+    }
     fout.close();
-    cout << "Expenses for " << getmonth() << ": \n";
     system(("cat " + filename).c_str());
 }
 

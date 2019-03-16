@@ -1,0 +1,10 @@
+Expenses for 201902: 
+Entertainment	    9900		99%
+    Transport	       0		0%
+         Food	     100		1%
+         Bill	       0		0%
+       Others	   10000		100%
+
+Total expense:     10000     Budget:     10200
+Your expense this month is 98.04% of your budget.
+You have a new profit of $10000 in 201902.

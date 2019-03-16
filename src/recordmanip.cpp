@@ -17,9 +17,10 @@ void deleterecord(struct record &records){
 }
 
 
-void printallrecords(struct record records[]){
+void printallrecords(string todaymonth, struct record records[]){
     int index = 1;
     cout << "***************************************************************************\n";
+    cout << "Records for " << todaymonth << ":\n";
     for (int i = 0; i <2000; i++){
         if (records[i].exist == true){
             cout << index << ".\t";
@@ -42,7 +43,7 @@ void printsinglerecord(struct record records){
     cout << setw(20) << records.usage;
     cout << setw(8) << setprecision(6) << records.amount;
     cout << "\t\t" << records.notes << endl;
-    cout << "*******************************************************\n";
+    cout << "**************************************************************************\n";
 }
 
 void editrecord(struct record &records){
