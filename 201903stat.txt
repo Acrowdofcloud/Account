@@ -1,0 +1,19 @@
+Expenses for 201903: 
+Entertainment	              0                -nan%
+    Transport	              0                -nan%
+         Food	              0                -nan%
+         Bill	              0                -nan%
+       Others	              0                -nan%
+***************************************************************************
+Budget: 10000           Credit Limit: 5000
+
+Total expense:         0       Total income:       0
+Your expense in 201903 is 0% of your budget.
+You are even this month.
+***************************************************************************
+               Bank            Cash           Credit Card            Others
+Income:           0               0                                       0
+Expenses:         0               0                     0                 0
+
+Your credit spending is 0% of your credit limit in 201903.
+***************************************************************************
