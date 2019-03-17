@@ -44,13 +44,27 @@ void writereport(string todaymonth, double statincome, double statexpense, doubl
         fout << "You have a net loss of $" << setprecision(8) << statexpense - statincome  << " in " << todaymonth << ".\n";
     }
     else if(statincome > statexpense){
-        fout << "You have a new profit of $" << setprecision(8) << statincome - statexpense << " in " << todaymonth << ".\n";
+        fout << "You have a net profit of $" << setprecision(8) << statincome - statexpense << " in " << todaymonth << ".\n";
     }
     else{
         fout << "You are even this month.\n";
     }
     fout.close();
-    system(("cat " + filename).c_str());
+}
+
+void writeaccount(string todaymonth, double Bankin, double Bankout, double Cashin, double Cashout, double Credit, double Otherin, double Otherout){
+    ofstream fout;
+    string filename = todaymonth + "stat.txt";
+    fout.open(filename, ios::app);
+    fout << "***************************************************************************\n";
+    fout << setw(16) << "Bank" << setw(16) << "Cash" << setw(22) << "Credit Card" << setw(22) << "Others\n";
+    fout << "Income:     " << setw(7) << Bankin;
+    fout << setw(16) << Cashin << setw(40) << Otherin << endl;
+    fout << "Expenses:   " << setw(7) << Bankout;
+    fout << setw(16) << Cashout << setw(22) << Credit << endl;
+    fout << "***************************************************************************\n";
+    fout.close();
+
 }
 
 
