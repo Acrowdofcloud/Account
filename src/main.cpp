@@ -139,7 +139,6 @@ int main(){
             if (fin.fail()){
                 cout << "No records for " << todaymonth << ".\n";
                 todaymonth = getmonth();
-                exit(1);
             }
             else{
                 index = 0;
