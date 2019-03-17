@@ -26,7 +26,6 @@ int main(){
     if (fin.fail()){
         system(("touch " + filename).c_str());
         system(("sort -k1 -k2 " + filename + " >> " + todaymonth + "sorted.txt").c_str());
-        exit(1);
     }
     fin.close();
 
