@@ -40,7 +40,7 @@ void writereport(string todaymonth, double statincome, double statexpense, doubl
     fout << "***************************************************************************\n";
     fout << "Budget: " << setprecision(6) << budget << setw(25) << "Credit Limit: " << setprecision(6) << creditlim << endl;
     fout << "\nTotal expense: " << setw(9) << setprecision(6) << statexpense << "       Total income:" << setw(8) << setprecision(6) << statincome << endl;
-    fout << "Your expense in " << todaymonth << " is " << setprecision(2) << (statexpense/budget) * 100 << "% of your budget.\n";
+    fout << "Your expense in " << todaymonth << " is " << setprecision(3) << (statexpense/budget) * 100 << "% of your budget.\n";
     if (statincome < statexpense){
         fout << "You have a net loss of $" << setprecision(8) << statexpense - statincome  << " in " << todaymonth << ".\n";
     }
