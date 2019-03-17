@@ -48,7 +48,7 @@ int main(){
 
     fin.open(todaymonth + "stat.txt");
     if (fin.fail()){
-        system(("touch " + todaymonth + "stat.txt").c_str());
+        (("touch " + todaymonth + "stat.txt").c_str());
         fin.close();
     }
     fin.close();
@@ -77,8 +77,8 @@ int main(){
                 break;
             }
         }
-        report(todaymonth, creditlim, budget, monthrecords);
 
+        report(todaymonth, creditlim, budget, monthrecords);
         cout << "What do you want to do?\n";
         cout << "0. Exit\n";
         cout << "1. Display records   2. New Expense           3. New Income\n";
@@ -104,19 +104,25 @@ int main(){
         }
         else if(command == 4){
             int edit;
-            printf("Which record?\n");
+            printf("Which record?\t");
+            printf("0. Return\n");
             printallrecords(todaymonth, monthrecords);
             cin >> edit;
-            editrecord(monthrecords[edit-1]);
+            if (edit != 0){
+               editrecord(monthrecords[edit-1]);
+            }
             printallrecords(todaymonth, monthrecords);
             alarm(todaymonth, creditlim, budget, monthrecords);
         }
         else if(command == 5){
             int del;
-            printf("Which record?\n");
+            printf("Which record?\t");
+            printf("0. Return\n");
             printallrecords(todaymonth, monthrecords);
             cin >> del;
-            deleterecord(monthrecords[del-1]);
+            if (del != 0){
+                deleterecord(monthrecords[del-1]);
+            }
             printallrecords(todaymonth, monthrecords);
             alarm(todaymonth, creditlim, budget, monthrecords);
         }
