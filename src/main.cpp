@@ -15,6 +15,7 @@ int main(){
     string todaydate = gettime();
     string todaymonth = getmonth();
 	double budget{ 0 };
+	double creditlim = 0;
     int command, x, index = 0;
     ifstream fin;
     ofstream fout;
@@ -37,7 +38,7 @@ int main(){
     fin.close();
 
     fin.open("budget.txt");
-    fin >> budget;
+    fin >> budget >> creditlim;
     fin.close();
     if (budget == 0){
         printf("What is your monthly budget?\n");
@@ -59,8 +60,9 @@ int main(){
 
         cout << "What do you want to do?\n";
         cout << "0. Exit\n";
-        cout << "1. Display records 2. New Expense      3. New Income       4. Edit Record\n";
-        cout << "5. Delete Record   6. Statistic report 7. Change budget    8. Change month" << endl;
+        cout << "1. Display records   2. New Expense           3. New Income\n";
+        cout << "4. Edit Records      5. Delete Record         6. Statistic report" << endl;
+        cout << "7. Change budget     8. Change Credit limit   9. Change month" << endl;
         cout << "***************************************************************************\n";
         cin >> command;
 
@@ -69,7 +71,7 @@ int main(){
         }
         else if (command == 1){
             printallrecords(todaymonth, monthrecords);
-            alarm(todaymonth, budget, monthrecords);
+            alarm(todaymonth, creditlim, budget, monthrecords);
         }
         else if(command == 2){
             addexpense(todaymonth, todaydate, monthrecords[x]);
@@ -86,6 +88,7 @@ int main(){
             cin >> edit;
             editrecord(monthrecords[edit-1]);
             printallrecords(todaymonth, monthrecords);
+            alarm(todaymonth, creditlim, budget, monthrecords);
         }
         else if(command == 5){
             int del;
@@ -94,18 +97,30 @@ int main(){
             cin >> del;
             deleterecord(monthrecords[del-1]);
             printallrecords(todaymonth, monthrecords);
+            alarm(todaymonth, creditlim, budget, monthrecords);
         }
         else if (command == 6){
-            report(todaymonth, budget, monthrecords);
+            report(todaymonth, creditlim, budget, monthrecords);
         }
         else if(command == 7){
+            printf("Old budget: %.0f\n", budget);
             printf("New budget: ");
             cin >> budget;
             fout.open("budget.txt");
-            fout << budget;
+            fout << budget << endl;
+            fout << creditlim;
             fout.close();
         }
         else if(command == 8){
+            printf("Old Credit Limit: %.0f\n", creditlim);
+            printf("New Credit Limit: ");
+            cin >> creditlim;
+            fout.open("budget.txt");
+            fout << budget << endl;
+            fout << creditlim;
+            fout.close();
+        }
+        else if(command == 9){
             printf("Which month? (yyyymm)\n");
             cin >> todaymonth;
             fin.open(todaymonth + "sorted.txt");

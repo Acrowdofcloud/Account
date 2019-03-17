@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void profitstat(string todaymonth, double budget, double statexpense, struct record records[]){
+void profitstat(string todaymonth, double creditlim, double budget, double statexpense, struct record records[]){
     double Entertainment = 0;
     double Food = 0;
     double Bill = 0;
@@ -22,7 +22,9 @@ void profitstat(string todaymonth, double budget, double statexpense, struct rec
                 Entertainment += records[i].amount;
             }
             if (records[i].usage == "Others"){
-                Others += records[i].amount;
+                if (records[i].type == 'E'){
+                    Others += records[i].amount;
+                }
             }
             if (records[i].usage == "Bill"){
                 Bill += records[i].amount;
@@ -36,7 +38,7 @@ void profitstat(string todaymonth, double budget, double statexpense, struct rec
         }
     }
 
-    writereport(todaymonth, statincome, statexpense, Entertainment, Transport, Food, Bill, Others, budget);
+    writereport(todaymonth, statincome, statexpense, Entertainment, Transport, Food, Bill, Others, creditlim, budget);
     cout << "***************************************************************************\n";
 }
 
@@ -61,7 +63,12 @@ void accountstat(string todaymonth, double budget, struct record records[]){
                 }
             }
             else if (records[i].account == "Others"){
-                Otherin += records[i].amount;
+                if (records[i].type == 'E'){
+                    Otherout += records[i].amount;
+                }
+                else{
+                    Otherin += records[i].amount;
+                }
             }
             else {
                 Credit += records[i].amount;
@@ -71,10 +78,11 @@ void accountstat(string todaymonth, double budget, struct record records[]){
     writeaccount(todaymonth, Bankin, Bankout, Cashin, Cashout, Credit, Otherin, Otherout);
 }
 
-void report(string todaymonth, double budget, struct record records[]){
+void report(string todaymonth, double creditlim, double budget, struct record records[]){
     string filename = todaymonth + "stat.txt";
     double statexpense = calout(todaymonth, records);
-    profitstat(todaymonth, budget, statexpense, records);
+    profitstat(todaymonth, creditlim, budget, statexpense, records);
     accountstat(todaymonth, budget, records);
+    writecredit(todaymonth, creditlim, records);
     system(("cat " + filename).c_str());
 }

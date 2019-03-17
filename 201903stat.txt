@@ -1,16 +1,19 @@
 Expenses for 201903: 
 Entertainment	              0                   0%
-    Transport	             10                 100%
+    Transport	              0                   0%
          Food	              0                   0%
-         Bill	              0                   0%
+         Bill	           5000                 100%
        Others	              0                   0%
 ***************************************************************************
-Budget: 10200
-Total expense:        10       Total income:   15000
-Your expense in 201903 is 0.098% of your budget.
-You have a net profit of $14990 in 201903.
+Budget: 10200           Credit Limit: 6000
+
+Total expense:      5000       Total income:   15000
+Your expense in 201903 is 49% of your budget.
+You have a net profit of $10000 in 201903.
 ***************************************************************************
-            Bank            Cash           Credit Card               Others
+               Bank            Cash           Credit Card            Others
 Income:       15000               0                                       0
-Expenses:         0              10                     0
+Expenses:         0               0                  5000                 0
+
+Your credit spending is 83.3333% of your credit limit in 201903.
 ***************************************************************************

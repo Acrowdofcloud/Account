@@ -10,5 +10,9 @@ double calin(std::string todaymonth, struct record records[]);
 
 double calout(std::string todaymonth, struct record records[]);
 
-void alarm(std::string todaymonth, double budget, struct record records[]);
+double calcre(std::string todaymonth, struct record records[]);
+
+void creditalarm(std::string todaymonth, double creditlim, struct record records[]);
+
+void alarm(std::string todaymonth, double creditlim, double budget, struct record records[]);
 

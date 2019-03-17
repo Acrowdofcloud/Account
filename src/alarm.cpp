@@ -34,7 +34,28 @@ double calout(string todaymonth, struct record records[]){
     return tempexpense;
 }
 
-void alarm(string todaymonth, double budget, struct record records[]){
+double calcre(string todaymonth, struct record records[]){
+    double temp = 0;
+    for (int i = 0; i < 2000; i++){
+        if (records[i].exist){
+            if (records[i].date.substr(0, 6) == todaymonth){
+                if (records[i].account == "Credit_Card"){
+                    temp += records[i].amount;
+                }
+            }
+        }
+    }
+    return temp;
+}
+
+void creditalarm(string todaymonth, double creditlim, struct record records[]){
+    double totalcredit = calcre(todaymonth, records);
+    if (totalcredit/creditlim >= 0.7){
+        cout << "***************************************************************************\n";
+        cout << "Alert! Your credit expense is " << setprecision(3) << totalcredit/creditlim * 100 << "% of your credit limit!" << endl;
+    }
+}
+void alarm(string todaymonth, double creditlim, double budget, struct record records[]){
     double totalincome = calin(todaymonth, records);
     double totalexpense = calout(todaymonth, records);
     cout << "Total income : $";
@@ -46,5 +67,7 @@ void alarm(string todaymonth, double budget, struct record records[]){
         cout << "***************************************************************************\n";
         cout << "Alert! Your expense this month is " << setprecision(3) <<  totalexpense/budget * 100 << "% of your budget!" << endl;
     }
+    creditalarm(todaymonth, creditlim, records);
     cout << "***************************************************************************\n";
+
 }

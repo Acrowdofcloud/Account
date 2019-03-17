@@ -1,2 +1,2 @@
 20190317         Bank  R              Salary   15000 N
-20190317         Cash  E           Transport      10 N
+20190317  Credit_Card  E                Bill    5000 N

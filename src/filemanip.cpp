@@ -4,6 +4,7 @@
 #include <iomanip>
 #include "structs.h"
 #include "getdate.h"
+#include "alarm.h"
 
 using namespace std;
 
@@ -24,7 +25,7 @@ void writetorecord(string todaymonth, string filename, struct record records[]){
     fout.close();
 }
 
-void writereport(string todaymonth, double statincome, double statexpense, double Entertainment, double Transport, double Food, double Bill, double Others, double budget){
+void writereport(string todaymonth, double statincome, double statexpense, double Entertainment, double Transport, double Food, double Bill, double Others, double creditlim, double budget){
     string filename, cat;
     filename = todaymonth + "stat.txt";
     system(("rm " + todaymonth + "stat.txt").c_str());
@@ -37,7 +38,7 @@ void writereport(string todaymonth, double statincome, double statexpense, doubl
     fout << "         Bill\t" << setw(15) << setprecision(6) << Bill << setw(20) << setprecision(3) << (Bill/statexpense) * 100 << "%\n";
     fout << "       Others\t" << setw(15) << setprecision(6) << Others << setw(20) <<  setprecision(3) << (Others/statexpense) * 100 << "%\n";
     fout << "***************************************************************************\n";
-    fout << "Budget: " << setprecision(6) << budget;
+    fout << "Budget: " << setprecision(6) << budget << setw(25) << "Credit Limit: " << setprecision(6) << creditlim << endl;
     fout << "\nTotal expense: " << setw(9) << setprecision(6) << statexpense << "       Total income:" << setw(8) << setprecision(6) << statincome << endl;
     fout << "Your expense in " << todaymonth << " is " << setprecision(2) << (statexpense/budget) * 100 << "% of your budget.\n";
     if (statincome < statexpense){
@@ -52,19 +53,28 @@ void writereport(string todaymonth, double statincome, double statexpense, doubl
     fout.close();
 }
 
+void writecredit(string todaymonth, double creditlim, struct record records[]){
+    ofstream fout;
+    double totalcred = calcre(todaymonth, records);
+    string filename = todaymonth + "stat.txt";
+    fout.open(filename, ios::app);
+    fout << "Your credit spending is " << totalcred/creditlim * 100 << "% of your credit limit in " << todaymonth << "." << endl;
+    fout << "***************************************************************************\n";
+    fout.close();
+}
+
 void writeaccount(string todaymonth, double Bankin, double Bankout, double Cashin, double Cashout, double Credit, double Otherin, double Otherout){
     ofstream fout;
     string filename = todaymonth + "stat.txt";
     fout.open(filename, ios::app);
     fout << "***************************************************************************\n";
-    fout << setw(16) << "Bank" << setw(16) << "Cash" << setw(22) << "Credit Card" << setw(22) << "Others\n";
+    fout << setw(19) << "Bank" << setw(16) << "Cash" << setw(22) << "Credit Card" << setw(19) << "Others\n";
     fout << "Income:     " << setw(7) << Bankin;
     fout << setw(16) << Cashin << setw(40) << Otherin << endl;
     fout << "Expenses:   " << setw(7) << Bankout;
-    fout << setw(16) << Cashout << setw(22) << Credit << endl;
-    fout << "***************************************************************************\n";
+    fout << setw(16) << Cashout << setw(22) << Credit << setw(18) << Otherout << endl;
+    fout << "\n";
     fout.close();
-
 }
 
 

@@ -6,4 +6,4 @@ void profitstat(std::string todaymonth, double budget, double statexpense, struc
 
 void accountstat(std::string, double, struct record*);
 
-void report(std::string todaymonth, double budget, struct record records[]);
+void report(std::string todaymonth, double creditlim, double budget, struct record records[]);
