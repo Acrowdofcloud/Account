@@ -84,5 +84,4 @@ void report(string todaymonth, double creditlim, double budget, struct record re
     profitstat(todaymonth, creditlim, budget, statexpense, records);
     accountstat(todaymonth, budget, records);
     writecredit(todaymonth, creditlim, records);
-    system(("cat " + filename).c_str());
 }

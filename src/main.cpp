@@ -36,14 +36,26 @@ int main(){
     }
     fin.close();
 
-    fin.open("budget.txt");
+    fin.open(todaymonth + "budget.txt");
+    if (fin.fail()){
+        fout.open(todaymonth + "budget.txt");
+        fout << "0\n0";
+        fout.close();
+    }
     fin >> budget >> creditlim;
     fin.close();
     if (budget == 0){
-        printf("What is your monthly budget?\n");
+        printf("What is your budget for %6s?\n", todaymonth.c_str());
         cin >> budget;
-        fout.open("budget.txt");
+        fout.open(todaymonth + "budget.txt");
         fout << budget;
+        fout.close();
+    }
+    if (creditlim == 0){
+        printf("What is your credit limit for %6s?\n", todaymonth.c_str());
+        cin >> creditlim;
+        fout.open(todaymonth + "budget.txt", ios::app);
+        fout << "\n" << creditlim;
         fout.close();
     }
 
@@ -56,6 +68,7 @@ int main(){
                 break;
             }
         }
+        report(todaymonth, creditlim, budget, monthrecords);
 
         cout << "What do you want to do?\n";
         cout << "0. Exit\n";
@@ -99,7 +112,7 @@ int main(){
             alarm(todaymonth, creditlim, budget, monthrecords);
         }
         else if (command == 6){
-            report(todaymonth, creditlim, budget, monthrecords);
+            system(("cat " + todaymonth + "stat.txt").c_str());
         }
         else if(command == 7){
             printf("Old budget: %.0f\n", budget);
@@ -139,6 +152,9 @@ int main(){
                     index++;
                 }
             }
+            fin.close();
+            fin.open(todaymonth + "budget.txt");
+            fin >> budget >> creditlim;
             fin.close();
             printallrecords(todaymonth, monthrecords);
         }
