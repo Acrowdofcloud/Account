@@ -7,12 +7,12 @@ Entertainment	           1000                 100%
 ***************************************************************************
 Budget: 10000           Credit Limit: 5000
 
-Total expense:      1000       Total income:       0
+Total expense:      1000       Total income:   20000
 Your expense in 201903 is 10% of your budget.
-You have a net loss of $1000 in 201903.
+You have a net profit of $19000 in 201903.
 ***************************************************************************
                Bank            Cash           Credit Card            Others
-Income:           0               0                                       0
+Income:       20000               0                                       0
 Expenses:         0               0                  1000                 0
 
 Your credit spending is 20% of your credit limit in 201903.
