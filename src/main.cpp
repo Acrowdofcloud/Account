@@ -24,8 +24,8 @@ int main(){
 
     fin.open(filename);
     if (fin.fail()){
-        system(("touch " + filename).c_str());
-        system(("sort -k1 -k2 " + filename + " >> " + todaymonth + "sorted.txt").c_str());
+        system(("echo $null >>" + filename).c_str());
+        system(("sort " + filename + " >> " + todaymonth + "sorted.txt").c_str());
         fin.close();
     }
     fin.close();
