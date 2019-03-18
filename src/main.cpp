@@ -24,7 +24,8 @@ int main(){
 
     fin.open(filename);
     if (fin.fail()){
-        system(("echo $null >>" + filename).c_str());
+        fout.open(filename);
+        fout.close();
         system(("sort " + filename + " >> " + todaymonth + "sorted.txt").c_str());
         fin.close();
     }
@@ -48,7 +49,8 @@ int main(){
 
     fin.open(todaymonth + "stat.txt");
     if (fin.fail()){
-        (("touch " + todaymonth + "stat.txt").c_str());
+        fout.open(todaymonth + "stat.txt");
+        fout.close();
         fin.close();
     }
     fin.close();
@@ -127,7 +129,11 @@ int main(){
             alarm(todaymonth, creditlim, budget, monthrecords);
         }
         else if (command == 6){
-            system(("cat " + todaymonth + "stat.txt").c_str());
+            string outline;
+            fin.open(todaymonth + "stat.txt");
+            while (getline(fin, outline)){
+                cout << outline << endl;
+            }
         }
         else if(command == 7){
             printf("Old budget: %.0f\n", budget);
@@ -175,7 +181,7 @@ int main(){
 
 
         writetorecord(todaymonth, filename, monthrecords);
-        system(("rm " + todaymonth + "sorted.txt").c_str());
-        system(("sort -k1 -k2 " + filename + " >> " + todaymonth + "sorted.txt").c_str());
+        remove((todaymonth + "sorted.txt").c_str());
+        system(("sort " + filename + " >> " + todaymonth + "sorted.txt").c_str());
     }
 }

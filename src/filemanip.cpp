@@ -10,7 +10,7 @@ using namespace std;
 
 void writetorecord(string todaymonth, string filename, struct record records[]){
     ofstream fout;
-    system(("rm " + filename).c_str());
+    remove(filename.c_str());
     fout.open(filename);
     for (int i = 0; i <2000; i++){
         if (records[i].exist == true){
@@ -28,7 +28,7 @@ void writetorecord(string todaymonth, string filename, struct record records[]){
 void writereport(string todaymonth, double statincome, double statexpense, double Entertainment, double Transport, double Food, double Bill, double Others, double creditlim, double budget){
     string filename, cat;
     filename = todaymonth + "stat.txt";
-    system(("rm " + todaymonth + "stat.txt").c_str());
+    remove((todaymonth + "stat.txt").c_str());
     ofstream fout;
     fout.open(filename);
     fout << "Expenses for " << todaymonth << ": \n";
