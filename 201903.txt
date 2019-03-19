@@ -1,2 +1,2 @@
-20190318  Credit_Card  E       Entertainment    1000 N
 20190318         Bank  R              Salary   20000 N
+20190318  Credit_Card  E       Entertainment    1000 N
