@@ -9,6 +9,7 @@ using namespace std;
 string tempdate, tempaccount, tempusage;
 double tempamount;
 char temptype;
+const int amoutnt_width = 5;
 
 string typeofexpense(){
     int type;

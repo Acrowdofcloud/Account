@@ -18,7 +18,7 @@ void writetorecord(string todaymonth, string filename, struct record records[]){
             fout << setw(12) << records[i].account << " ";
             fout << setw(2) << records[i].type;
             fout << setw(20) << records[i].usage;
-            fout << setw(8) << records[i].amount;
+            fout << setw(10) << records[i].amount;
             fout << " " << records[i].notes << endl;
         }
     }
@@ -48,7 +48,7 @@ void writereport(string todaymonth, double statincome, double statexpense, doubl
         fout << "You have a net profit of $" << setprecision(8) << statincome - statexpense << " in " << todaymonth << ".\n";
     }
     else{
-        fout << "You are even this month.\n";
+        fout << "You are even in " << todaymonth << ".\n";
     }
     fout.close();
 }

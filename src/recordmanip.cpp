@@ -28,7 +28,7 @@ void printallrecords(string todaymonth, struct record records[]){
             cout << setw(12) << records[i].account << " ";
             cout << setw(2) << records[i].type;
             cout << setw(20) << records[i].usage;
-            cout << setw(8) << setprecision(6) << records[i].amount;
+            cout << setw(8) << setprecision(8) << records[i].amount;
             cout << "\t\t" << records[i].notes << endl;
             index++;
         }
