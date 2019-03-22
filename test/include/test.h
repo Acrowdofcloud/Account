@@ -16,6 +16,8 @@ public:
     double getAmount() const;
     char getType() const;
 
+    char type;
+
     std::string setDate(std::string);
     std::string setAccount(std::string);
     std::string setAmount(std::string);
@@ -23,7 +25,7 @@ public:
     std::string setNote(std::string);
     std::string setType(char);
 
-    void inputAmount();
+    void input(std::string);
 
     std::string toString() const;
     void toRecord(std::string);
@@ -33,7 +35,6 @@ private:
     std::string account;
     double amount;
     std::string usage;
-    char type;
     std::string note;
 
 };

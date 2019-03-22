@@ -1,4 +1,5 @@
-#include "test.h"       //used to avoid redeclaration within header and its cpp,eg int hi below
+#include "test.h"
+#include "getdate.h"
 #include <string>
 #include <iostream>
 #include <sstream>
@@ -15,14 +16,20 @@ string record::getNote() const { return note; }
 double record::getAmount() const { return amount; }
 char record::getType() const { return type; }
 
-void record::inputAmount() {
+void record::input(string field) {
     string result,line;
     while (result != "ok") {
-        if (result != "") {cout << result << endl;}
+        if (result != "") cout << result << endl;
         getline(cin,line);
-        result = setAmount(line);
+        if (field == "date") {
+            if ( line.length() == 0) line = gettime();
+            result = setDate(line);
+        }
+        if (field == "account") result = setAccount(line);
+        if (field == "amount") result = setAmount(line);
+        if (field == "usage") result = setUsage(line);
+        if (field == "note") result = setNote(line);
     }
-
 }
 
 string record::toString() const {
