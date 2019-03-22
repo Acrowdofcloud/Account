@@ -1,0 +1,9 @@
+#Untracked files:
+## Ignore Code::Blocks files
+*.depend
+*.layout
+#*.cbp
+
+#Except
+!.gitignore
+
