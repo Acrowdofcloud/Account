@@ -14,7 +14,7 @@ using namespace std;
 int main(){
     string todaydate = gettime();
     string todaymonth = getmonth();
-	double budget = 0;
+    double budget = 0;
 	double creditlim = 0;
     int command, x, index = 0;
     ifstream fin;

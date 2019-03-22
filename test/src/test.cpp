@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <fstream>
 #include <iomanip>
 #include <cmath>
 #include <regex>
@@ -20,9 +21,9 @@ void record::input(string field) {
     string result,line;
     while (result != "ok") {
         if (result != "") cout << result << endl;
-        getline(cin,line);
+        getline(cin, line);
         if (field == "date") {
-            if ( line.length() == 0) line = gettime();
+            if ( line.length() == 0) {line = gettime();}
             result = setDate(line);
         }
         if (field == "account") result = setAccount(line);
@@ -34,14 +35,11 @@ void record::input(string field) {
 
 string record::toString() const {
     ostringstream output;
-    output << date << " " << setw(amount_width) << fixed << setprecision(2) << amount << " " << setw(usage_width) << usage;
+    output << date << " " << type << " " << setw(amount_width) << fixed << setprecision(2) << amount << " " << setw(usage_width) << usage;
     output << " " << setw(account_width) << account << " " << setw(note_width) << note << "|" << endl;
     return output.str();
 }
 
-void record::toRecord(string input) {
-
-}
 
 string record::setDate(string input) {
     if ( input.length() != 8 ) { return "Wrong date format"; }      //simply check for length
@@ -51,6 +49,15 @@ string record::setDate(string input) {
 
 string record::setAccount(string input) {
     if ( input.length() > account_width ) { return "Account name is too long,limit is " + to_string(account_width) + " characters" ; }      //check for length
+
+    else if(input == ""){
+        if (type == 'R'){
+            input = "Bank";
+        }
+        else{
+            input = "Cash";
+        }
+    }
     account = input;
     return "ok";
 }
@@ -68,7 +75,7 @@ string record::setNote(string input) {
 }
 
 string record::setType(char input) {
-    type = 'E';
+    type = input;
     return "ok";
 }
 
@@ -76,7 +83,7 @@ string record::setAmount(string input) {
     regex test("^\\d+[.]?\\d*");
     if ( ! regex_match(input,test)) { return "Input is not a correct number"; }
     double number;
-    number = atof(input.c_str());
+    number = stof(input);
     if (number == 0) { return "Input should not be zero"; }        //check input not start with letter/is 0
     if (pow(10,(amount_width-3)) <= number) { return "Amount to large,max is " + to_string(amount_width-3) + " digits"; }        //check if input is too long
     else {
