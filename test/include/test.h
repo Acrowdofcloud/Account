@@ -23,6 +23,8 @@ public:
     std::string setNote(std::string);
     std::string setType(char);
 
+    void inputAmount();
+
     std::string toString() const;
     void toRecord(std::string);
 

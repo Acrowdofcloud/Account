@@ -22,11 +22,7 @@ int main() {
         result = "";
 
         cout << "Amount: \n";
-        while (result != "ok") {
-            if (result != "") {cout << result << endl;}
-            getline(cin,line);
-            result = entry[i].setAmount(line);
-        }
+        entry[i].inputAmount();
 
         result = "";
         cout << "Usage: \n";

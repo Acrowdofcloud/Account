@@ -15,6 +15,15 @@ string record::getNote() const { return note; }
 double record::getAmount() const { return amount; }
 char record::getType() const { return type; }
 
+void record::inputAmount() {
+    string result,line;
+    while (result != "ok") {
+        if (result != "") {cout << result << endl;}
+        getline(cin,line);
+        result = setAmount(line);
+    }
+
+}
 
 string record::toString() const {
     ostringstream output;
