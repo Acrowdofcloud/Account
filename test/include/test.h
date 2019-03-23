@@ -2,8 +2,9 @@
 // ^^^ prevent redfining the same thing,
 #include <string>
 
-const int account_width{20};        //width for each data in file
-const int amount_width{15};
+//width for each data in file
+const int account_width{20};
+const int amount_width{15};         //precision of double is 15 digits,so max width = 16
 const int usage_width{20};
 const int note_width{30};
 
