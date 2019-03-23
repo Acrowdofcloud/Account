@@ -1,9 +1,13 @@
-#include <iostream>
 #include "recordmanip.h"
-#include <string>
-#include "test.h"
-#include <fstream>
 #include "getdate.h"
+#include "test.h"
+#include "database.h"
+#include "global.h"
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <sstream>
+
 
 using namespace std;
 
@@ -15,41 +19,16 @@ void separation(int len){
 }
 
 void show10(){
-    string arr[10] = {};
-    int index{0};
-    ifstream fin;
-    string line;
-    fin.open(getmonth() + ".txt");
-    while (getline(fin, line)){
-        if(line != ""){
-            if (index != 10){
-                arr[index] = line;
-                index++;
-            }
-            else{
-                for (int i = 0; i < 9; i++){
-                    arr[i] = arr[i+1];
-                }
-                arr[9] = line;
-            }
-        }
+    int num_of_line = getNumofRecords(getmonth() + ".txt");
+    ifstream fin(getmonth() + ".txt");
+    stringstream output;
+    if (num_of_line > 10) {
+        streampos read_pos = (num_of_line - 10)*(::line_length+2) ;       //::line_length+2 as ::line_length doesnt include \n
+        fin.seekg(read_pos);                                              //start at (num_of_line - 10)th line
     }
-    fin.close();
+    output << fin.rdbuf();
     separation(105);
-    printf("Recent records:\n");
-    index = 1;
-    for (int i = 9; i >= 0; i--){
-        if (arr[i] != ""){
-            if (to_string(index).length() == 1){
-                printf("%d.  ",index);
-            }
-            else{
-                printf("%d. ", index);
-            }
-            cout << arr[i] << endl;
-            index++;
-        }
-    }
+    cout << output.str();
     separation(105);
 }
 

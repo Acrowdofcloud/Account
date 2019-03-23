@@ -1,13 +1,20 @@
 #include "database.h"
+#include "global.h"
 #include "test.h"
+#include "global.h"
 #include <fstream>
 #include <string>
 #include <iostream>
 
 using namespace std;
 
-record empty;
-int line_length = empty.toString().length();
+int getNumofRecords(string file) {
+    ifstream fin;
+    fin.open(file);
+    fin.seekg(0,ios::end);
+    streampos length = fin.tellg();
+    return length/(::line_length + 1);
+}
 
 void insertRecord(record input) {
     ofstream fout;
@@ -17,6 +24,9 @@ void insertRecord(record input) {
 }
 
 record stringtoRecord(string& line) {
+    if (line.length() != line_length) {
+        cout << "The input is not a valid record\n";
+        return ::empty; }
     record extract;
     extract.setDate(line.substr(0,8));
     extract.setType(line.substr(9,1));

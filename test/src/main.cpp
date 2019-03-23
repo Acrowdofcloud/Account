@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include "test.h"
 #include "getdate.h"
@@ -15,7 +16,6 @@ int main() {
 	//double creditlim = 0;
     int command = -1;
     //int x, index = 0;
-
 	while (command != 0){
         show10();
         printf("What do you want to do?\n");
@@ -41,7 +41,6 @@ int main() {
 
         }
 	}
-
 
 
     return 0;

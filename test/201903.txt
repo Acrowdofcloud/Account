@@ -3,3 +3,12 @@
 20190301 R          156.00 36346546355546546546                 Bank                              k
 20190322 E           68.00                                      Cash                test database.h
 20190324 R         9999.54                                      Bank                  test database
+20190324 E           12.00                                      Hash                               
+20190324 E           12.00              3334234                 Cash gggggggggggggggggggggggggggggg
+20190301 R          156.00 36346546355546546546                 Bank                              k
+20190322 E           68.00                                      Cash                test database.h
+20190324 R         9999.54                                      Bank                  test database
+20190324 E    999943424.00                  kkk                 HASH                          kkkkk
+20190324 R          123.45                  job                 Bank                         201902
+20190324 E            1.00                                      Cash                               
+20190324 E          444.00                                      Cash                               
