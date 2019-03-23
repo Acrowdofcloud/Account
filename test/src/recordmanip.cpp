@@ -68,7 +68,7 @@ void editrecord(record& records){
         }
         if (editcom == 2){
             int account;
-            if (records.getType() == 'R'){
+            if (records.getType() == "R"){
                 cout << "1. Cash   2. Bank\n";
                 cin >> account;
                 if (account == 1){
@@ -94,17 +94,17 @@ void editrecord(record& records){
 
         }
         if (editcom == 3){
-            if (records.getType() == 'E'){
-                records.setType('R');
+            if (records.getType() == "E"){
+                records.setType("R");
             }
             else{
-                records.setType('E');
+                records.setType("E");
             }
             cout << "Type changed\n";
         }
         if (editcom == 4){
             int type;
-            if (records.getType() == 'E'){
+            if (records.getType() == "E"){
                 cout << "1. Entertainment   2. Transport   3. Food   4. Bill   5. Others\n";
                 cin >> type;
                 if (type == 1){
@@ -145,9 +145,6 @@ void editrecord(record& records){
             cin.ignore();
             string tempnote;
             getline(cin, tempnote);
-            if (tempnote == ""){
-                tempnote = "N";
-            }
             records.setNote(tempnote);
         }
     }

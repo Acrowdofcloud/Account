@@ -26,13 +26,13 @@ int main() {
         record entry;
 
         if (command == 1){
-            entry.setType('E');
+            entry.setType("E");
             addexpense(entry);
             toRecord(entry);
         }
 
         else if (command == 2){
-            entry.setType('R');
+            entry.setType("R");
             addincome(entry);
             toRecord(entry);
         }

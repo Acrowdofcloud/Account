@@ -50,6 +50,6 @@ void addincome(record& records){
 
     cout << "Record added:\n";
     cout << "  ";
-    cout << records.toString();
+    cout << records.toString() << endl;
 
 }

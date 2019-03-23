@@ -9,13 +9,22 @@
 #include <regex>
 
 using namespace std;
-//add consturctor to set type?
+
+record::record() {
+    date = "00000000";
+    account = "";
+    type = " ";
+    amount = 0;
+    usage = "";
+    note = "";
+}
+
 string record::getDate() const { return date; }
 string record::getAccount() const { return account; }
 string record::getUsage() const { return usage; }
 string record::getNote() const { return note; }
 double record::getAmount() const { return amount; }
-char record::getType() const { return type; }
+string record::getType() const { return type; }
 
 void record::input(string field) {
     string result,line;
@@ -35,7 +44,7 @@ void record::input(string field) {
 string record::toString() const {
     ostringstream output;
     output << date << " " << type << " " << setw(amount_width) << fixed << setprecision(2) << amount << " " << setw(usage_width) << usage;
-    output << " " << setw(account_width) << account << " " << setw(note_width) << note << "|" << endl;
+    output << " " << setw(account_width) << account << " " << setw(note_width) << note;
     return output.str();
 }
 
@@ -56,7 +65,7 @@ string record::setAccount(string input) {
     }      //check for length
 
     else if(input == ""){
-        if (type == 'R'){
+        if (type == "R"){
             input = "Bank";
         }
         else{
@@ -77,7 +86,7 @@ string record::setUsage(string input) {
 }
 
 string record::setNote(string input) {
-    if ( input.length() > usage_width ) {
+    if ( input.length() > note_width ) {
         cout << "Note is too long,limit is " + to_string(note_width) + " characters\n";
         return "error";
     }
@@ -85,7 +94,7 @@ string record::setNote(string input) {
     return "ok";
 }
 
-string record::setType(char input) {
+string record::setType(string input) {
     type = input;
     return "ok";
 }

@@ -10,26 +10,28 @@ const int note_width{30};
 
 class record {
 public:
+    record();
+
     std::string getDate() const;
     std::string getAccount() const;
     std::string getUsage() const;
     std::string getNote() const;
     double getAmount() const;
-    char getType() const;
+    std::string getType() const;
 
     std::string setDate(std::string);
     std::string setAccount(std::string);
     std::string setAmount(std::string);
     std::string setUsage(std::string);
     std::string setNote(std::string);
-    std::string setType(char);
+    std::string setType(std::string);
 
     void input(std::string);
 
     std::string toString() const;
 
 private:
-    char type;
+    std::string type;
     std::string date;
     std::string account;
     double amount;
