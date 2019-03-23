@@ -16,7 +16,7 @@ void separation(int len){
 
 void show10(){
     string arr[10] = {};
-    int index;
+    int index{0};
     ifstream fin;
     string line;
     fin.open(getmonth() + ".txt");

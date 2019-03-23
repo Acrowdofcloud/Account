@@ -10,8 +10,6 @@
 
 using namespace std;
 
-void editrecord(record&);
-
 int main() {
     //double budget = 0;
 	//double creditlim = 0;
