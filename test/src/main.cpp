@@ -5,7 +5,7 @@
 #include "test.h"
 #include "getdate.h"
 #include "recordmanip.h"
-#include "filemanip.h"
+#include "database.h"
 #include "addrecord.h"
 
 using namespace std;
@@ -28,13 +28,13 @@ int main() {
         if (command == 1){
             entry.setType("E");
             addexpense(entry);
-            toRecord(entry);
+            insertRecord(entry);
         }
 
         else if (command == 2){
             entry.setType("R");
             addincome(entry);
-            toRecord(entry);
+            insertRecord(entry);
         }
 
         else if(command == 3){

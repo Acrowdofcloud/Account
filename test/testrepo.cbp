@@ -41,12 +41,13 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/addrecord.h" />
+		<Unit filename="include/database.h" />
 		<Unit filename="include/filemanip.h" />
 		<Unit filename="include/getdate.h" />
 		<Unit filename="include/recordmanip.h" />
 		<Unit filename="include/test.h" />
 		<Unit filename="src/addrecord.cpp" />
-		<Unit filename="src/filemanip.cpp" />
+		<Unit filename="src/database.cpp" />
 		<Unit filename="src/getdate.cpp" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/recordmanip.cpp" />
