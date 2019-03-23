@@ -13,10 +13,10 @@ using namespace std;
 void editrecord(record&);
 
 int main() {
-    double budget = 0;
-	double creditlim = 0;
+    //double budget = 0;
+	//double creditlim = 0;
     int command = -1;
-    int x, index = 0;
+    //int x, index = 0;
 
 	while (command != 0){
         show10();

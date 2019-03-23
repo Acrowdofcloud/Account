@@ -83,7 +83,7 @@ string record::setAmount(string input) {
     regex test("^\\d+[.]?\\d*");
     if ( ! regex_match(input,test)) { return "Input is not a correct number"; }
     double number;
-    number = stof(input);
+    number = stod(input);
     if (number == 0) { return "Input should not be zero"; }        //check input not start with letter/is 0
     if (pow(10,(amount_width-3)) <= number) { return "Amount to large,max is " + to_string(amount_width-3) + " digits"; }        //check if input is too long
     else {
