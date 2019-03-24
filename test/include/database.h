@@ -3,7 +3,9 @@
 #include <string>
 #include "test.h"
 
-void insertRecord(record);
+int insertRecord(record);
+
+//int searchRecord(std::string,std::string);
 
 int deleteRecord(record);
 

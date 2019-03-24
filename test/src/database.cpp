@@ -16,23 +16,63 @@ int getNumofRecords(string file) {
     return length/(::line_length + 2);
 }
 
-void insertRecord(record input) {
+int insertRecord(record input) {
+    string record_file = input.getDate().substr(0,6) + ".txt";
+    int input_date = stoi(input.getDate());
     ifstream fin;
-    fin.open("");
-
+    fin.open(record_file);
+    streampos last_record_start;
+    last_record_start = (getNumofRecords(record_file) - 1) * (::line_length + 2);
+    fin.seekg(last_record_start);
+    int last_record_date;
+    fin >> last_record_date;
     ofstream fout;
-    fout.open(input.getDate().substr(0,6) + ".txt", ios::app);
-    fout << input.toString() << endl;
+    if ( last_record_date <= input_date ) {
+        fout.open(record_file, ios::app);       //input is newer / the same as the last record
+        fout << input.toString() << endl;
+        fout.close();
+        return 0;
+    }
+    else {
+        fin.seekg(0,ios::beg);      //input is older
+        int current_pos{0};
+        int record_date{0};
+        while (record_date < input_date) {
+            fin >> record_date;
+            current_pos += (::line_length + 2);
+            fin.seekg(current_pos);
+        }
+    streampos target_pos = current_pos - (::line_length + 2);
+    string line;
+    fin.seekg(0,ios::beg);
+    current_pos = fin.tellg();
+    remove ("temp.txt");
+    fout.open("temp.txt", ios::app);
+    while (current_pos < target_pos) {
+        getline(fin,line);
+        current_pos = fin.tellg();
+        fout << line << endl;
+    }
+    fout << input.toString() << endl;       //add the target record and copy the rest to temp.txt
+    fout << fin.rdbuf();
+    fin.close();
     fout.close();
+    remove(record_file.c_str());
+    char oldname[] ="temp.txt";
+    int result = rename(oldname, record_file.c_str());
+    return result;
+    }
 }
+
 
 int deleteRecord(record input) {
     string record_file;
     record_file = input.getDate().substr(0,6) + ".txt";
     if ( input.getLineNum() == 0 || input.getLineNum() > getNumofRecords(record_file) ) {
-        cout << "record line number is out of range\n";
+        cout << "record line number is out of range\n";     //check input
         return -1;
     }
+
     ifstream fin(record_file, ios::binary);
     remove("temp.txt");
     ofstream fout("temp.txt", ios::app | ios::binary);
