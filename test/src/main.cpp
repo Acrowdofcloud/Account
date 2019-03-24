@@ -39,13 +39,12 @@ int main() {
         }
 
         else if(command == 3){
-            cout << "Delete by line number in file:\n";
-            int num;
-            record target;
+            cout << "Delete:\n";
+            string line;
             cin.ignore();
-            cin >> num;
-            target.setLineNum(num);
-            target.setDate("20190322");
+            getline(cin,line);
+            record target;
+            target = stringtoRecord(line);
             deleteRecord(target);
         }
 	}

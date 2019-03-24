@@ -39,6 +39,4 @@ private:
     double amount;
     std::string usage;
     std::string note;
-    int line_num;
-
 };

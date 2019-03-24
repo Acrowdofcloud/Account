@@ -25,7 +25,6 @@ string record::getUsage() const { return usage; }
 string record::getNote() const { return note; }
 double record::getAmount() const { return amount; }
 string record::getType() const { return type; }
-int record::getLineNum() const { return line_num; }
 
 void record::input(string field) {
     string result,line;
@@ -98,10 +97,6 @@ string record::setNote(string input) {
 string record::setType(string input) {
     type = input;
     return "ok";
-}
-
-int record::setLineNum(int input) {
-    line_num = input;
 }
 
 string record::setAmount(string input) {

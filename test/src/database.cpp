@@ -5,101 +5,95 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 int getNumofRecords(string file) {
     ifstream fin;
+    string line;
     fin.open(file);
-    fin.seekg(0,ios::end);
-    streampos length = fin.tellg();
-    return length/(::line_length + 2);
+    int num_of_line{0};
+    while(getline(fin,line)) { num_of_line++; }
+    return num_of_line;
 }
 
 int insertRecord(record input) {
     string record_file = input.getDate().substr(0,6) + ".txt";
     int input_date = stoi(input.getDate());
-    ifstream fin;
-    fin.open(record_file);
-    streampos last_record_start;
-    last_record_start = (getNumofRecords(record_file) - 1) * (::line_length + 2);
-    fin.seekg(last_record_start);
+    int num_of_line = getNumofRecords(record_file);
+    ifstream fin(record_file);
+    int last_line = num_of_line;
+    int current_line_num{1};
+    string line;
+    while (current_line_num < last_line) {
+        getline(fin,line);
+        current_line_num++;
+        cout << current_line_num << "\n";
+    }
     int last_record_date;
     fin >> last_record_date;
+
+    cout << last_record_date << "\n";
+
     ofstream fout;
     if ( last_record_date <= input_date ) {
         fout.open(record_file, ios::app);       //input is newer / the same as the last record
-        fout << input.toString() << endl;
+        fout << input.toString() << "\n";
         fout.close();
         return 0;
     }
     else {
         fin.seekg(0,ios::beg);      //input is older
-        int current_pos{0};
-        int record_date{0};
-        while (record_date < input_date) {
-            fin >> record_date;
-            current_pos += (::line_length + 2);
-            fin.seekg(current_pos);
+        vector<string> records(num_of_line+1);
+        bool inserted = false;
+        for (int i{0};i<num_of_line+1;i++) {
+            getline(fin,line);
+            if (stoi(line.substr(0,8)) >= input_date && !inserted) {
+                records[i] = input.toString();      //insert input when fin line date is larger than input
+                inserted = true;
+                i++;
+                records[i] = line;
+            }
+            else {records[i] = line;
+            }
         }
-    streampos target_pos = current_pos - (::line_length + 2);
-    string line;
-    fin.seekg(0,ios::beg);
-    current_pos = fin.tellg();
-    remove ("temp.txt");
-    fout.open("temp.txt", ios::app);
-    while (current_pos < target_pos) {
-        getline(fin,line);
-        current_pos = fin.tellg();
-        fout << line << endl;
+        remove ("temp.txt");
+        fout.open("temp.txt", ios::app);
+        for (string s : records) {      //write vector to file
+            fout << s << "\n";
+        }
     }
-    fout << input.toString() << endl;       //add the target record and copy the rest to temp.txt
-    fout << fin.rdbuf();
     fin.close();
     fout.close();
     remove(record_file.c_str());
     char oldname[] ="temp.txt";
-    int result = rename(oldname, record_file.c_str());
-    return result;
-    }
+    rename(oldname, record_file.c_str());
+    return 0;
 }
 
 
 int deleteRecord(record input) {
-    string record_file;
-    record_file = input.getDate().substr(0,6) + ".txt";
-    if ( input.getLineNum() == 0 || input.getLineNum() > getNumofRecords(record_file) ) {
-        cout << "record line number is out of range\n";     //check input
-        return -1;
-    }
-
-    ifstream fin(record_file,ios::binary);
-    fin.rdbuf()->pubsetbuf(nullptr, 0);
+    string record_file = input.getDate().substr(0,6) + ".txt";;
+    ifstream fin(record_file);
+    string target = input.toString();
     remove("temp.txt");
-    ofstream fout("temp.txt", ios::app | ios::binary);
-    streampos current_pos{0};
+    ofstream fout("temp.txt",ios::app);
     string line;
-    streampos target_pos = (input.getLineNum() - 1)*(::line_length + 2);
-    while (current_pos < target_pos) {      //copy every line b4 the target record to temp.txt
-        getline(fin,line);
-        current_pos = fin.tellg();
-        cout << "tellg(): " << current_pos << endl;
-        fout << line << endl;
+    fin.clear();
+    fin.seekg(0,ios::beg);
+    bool deleted{false};
+    while (getline(fin,line)) {
+        if (line != target || deleted ) {
+            fout << line << endl;
+        }
+        else {deleted = true;}
     }
-    current_pos += (::line_length + 2);
-    fin.seekg(current_pos);
-    cout << "to seekg(): " << fin.tellg();
-    cout << "after skip line: " << current_pos << endl;
-    while (!fin.eof()) {
-        getline(fin,line);
-        fout << line << endl;
-    }       //skip the target record and copy the rest to temp.txt
     fin.close();
     fout.close();
-    //remove(record_file.c_str());
-    //char oldname[] ="temp.txt";
-    //int result = rename(oldname, record_file.c_str());
-    //return result;
+    remove(record_file.c_str());
+    char oldfile[] = "temp.txt";
+    rename(oldfile,record_file.c_str());
     return 0;
 }
 
