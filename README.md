@@ -12,7 +12,7 @@ Assumptions:
 1.  Users' inputs are always correct
 2.  Limit of records will be 2000 each Month
 3.  This system is an executable that works in both Linux and Windows environment.
-4.  
+4.  Users will not input/calculate amount that require more than 15 decimal digits of precision offered by double
 
 ## Features
 1.  Add income or expense record(amount, date, type, account)
@@ -21,3 +21,4 @@ Assumptions:
 4.  Provide statistical report of users' financial state
 5.  Budget limit and alert if total expense is greater than or equal to 70% of the budget.
 6.  Easy to use
+7.  Input validation
