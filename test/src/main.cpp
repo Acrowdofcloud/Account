@@ -16,11 +16,12 @@ int main() {
 	//double creditlim = 0;
     int command = -1;
     //int x, index = 0;
+
 	while (command != 0){
         show10();
         printf("What do you want to do?\n");
         printf("0. Return\n");
-        printf("1. Add expense  2. Add income  3. Delete record   4. Edit record\n");
+        printf("1. Add expense  2. Add income  3. Delete record(WIP)   4. Edit record\n");
         separation(105);
         cin >> command;
         record entry;
@@ -38,7 +39,14 @@ int main() {
         }
 
         else if(command == 3){
-
+            cout << "Delete by line number in file:\n";
+            int num;
+            record target;
+            cin.ignore();
+            cin >> num;
+            target.setLineNum(num);
+            target.setDate("20190322");
+            deleteRecord(target);
         }
 	}
 

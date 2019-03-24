@@ -20,15 +20,21 @@ void separation(int len){
 
 void show10(){
     int num_of_line = getNumofRecords(getmonth() + ".txt");
-    ifstream fin(getmonth() + ".txt");
-    stringstream output;
+    ifstream fin(getmonth() + ".txt", ios::binary);
+    int current_line_num{1};
     if (num_of_line > 10) {
         streampos read_pos = (num_of_line - 10)*(::line_length+2) ;       //::line_length+2 as ::line_length doesnt include \n
-        fin.seekg(read_pos);                                              //start at (num_of_line - 10)th line
+        fin.seekg(read_pos);
+        current_line_num = num_of_line - 10 + 1 ;                                            //start at (num_of_line - 10)th line
     }
-    output << fin.rdbuf();
+    string line;
     separation(105);
-    cout << output.str();
+    for (;current_line_num <= num_of_line; current_line_num++) {
+        if (getline(fin,line)) {
+            cout << current_line_num << ". " << line << endl;       //display actual line number for now
+        }
+    }
+    //cout << output.str();
     separation(105);
 }
 

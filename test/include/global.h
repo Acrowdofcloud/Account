@@ -3,4 +3,4 @@
 #include <string>
 
 const record empty;
-const unsigned int line_length = empty.toString().length();
+const int line_length = empty.toString().length();

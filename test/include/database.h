@@ -5,6 +5,8 @@
 
 void insertRecord(record);
 
+int deleteRecord(record);
+
 int getNumofRecords(std::string);
 
 record stringtoRecord(std::string&);
