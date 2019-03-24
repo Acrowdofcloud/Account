@@ -73,7 +73,8 @@ int deleteRecord(record input) {
         return -1;
     }
 
-    ifstream fin(record_file, ios::binary);
+    ifstream fin(record_file,ios::binary);
+    fin.rdbuf()->pubsetbuf(nullptr, 0);
     remove("temp.txt");
     ofstream fout("temp.txt", ios::app | ios::binary);
     streampos current_pos{0};
@@ -82,17 +83,24 @@ int deleteRecord(record input) {
     while (current_pos < target_pos) {      //copy every line b4 the target record to temp.txt
         getline(fin,line);
         current_pos = fin.tellg();
+        cout << "tellg(): " << current_pos << endl;
         fout << line << endl;
     }
     current_pos += (::line_length + 2);
     fin.seekg(current_pos);
-    fout << fin.rdbuf();        //skip the target record and copy the rest to temp.txt
+    cout << "to seekg(): " << fin.tellg();
+    cout << "after skip line: " << current_pos << endl;
+    while (!fin.eof()) {
+        getline(fin,line);
+        fout << line << endl;
+    }       //skip the target record and copy the rest to temp.txt
     fin.close();
     fout.close();
-    remove(record_file.c_str());
-    char oldname[] ="temp.txt";
-    int result = rename(oldname, record_file.c_str());
-    return result;
+    //remove(record_file.c_str());
+    //char oldname[] ="temp.txt";
+    //int result = rename(oldname, record_file.c_str());
+    //return result;
+    return 0;
 }
 
 record stringtoRecord(string& line) {
