@@ -22,7 +22,15 @@ int insertRecord(record input) {
     string record_file = input.getDate().substr(0,6) + ".txt";
     int input_date = stoi(input.getDate());
     int num_of_line = getNumofRecords(record_file);
-    ifstream fin(record_file);
+    ofstream fout;
+    ifstream fin;
+    fin.open(record_file);
+    if (fin.fail()) {
+        fout.open(record_file, ios::app);       //input needs to go to new file
+        fout << input.toString() << "\n";
+        fout.close();
+        return 0;
+    }
     int last_line = num_of_line;
     int current_line_num{1};
     string line;
@@ -36,7 +44,6 @@ int insertRecord(record input) {
 
     cout << last_record_date << "\n";
 
-    ofstream fout;
     if ( last_record_date <= input_date ) {
         fout.open(record_file, ios::app);       //input is newer / the same as the last record
         fout << input.toString() << "\n";

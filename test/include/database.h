@@ -1,11 +1,12 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include "test.h"
 
 int insertRecord(record);
 
-//int searchRecord(std::string,std::string);
+std::vector<record> searchRecord(std::string,std::string);
 
 int deleteRecord(record);
 

@@ -42,7 +42,6 @@
 		</Compiler>
 		<Unit filename="include/addrecord.h" />
 		<Unit filename="include/database.h" />
-		<Unit filename="include/filemanip.h" />
 		<Unit filename="include/getdate.h" />
 		<Unit filename="include/global.h">
 			<Option target="&lt;{~None~}&gt;" />

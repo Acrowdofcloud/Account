@@ -39,7 +39,8 @@ int main() {
         }
 
         else if(command == 3){
-            cout << "Delete:\n";
+            //searchrecord()
+            cout << "Delete: WIP,enter whole line for now\n";
             string line;
             cin.ignore();
             getline(cin,line);
@@ -47,6 +48,15 @@ int main() {
             target = stringtoRecord(line);
             deleteRecord(target);
         }
+        /*
+        else if(command == 4) {
+            cout << "Which record?\n";
+            searchrecord()
+            editrecord()
+            deleteRecord(original)
+            insertRecord(edited)
+        }
+        */
 	}
 
     return 0;
