@@ -41,19 +41,21 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/addrecord.h" />
+		<Unit filename="include/alarm.h" />
+		<Unit filename="include/class.h" />
 		<Unit filename="include/database.h" />
 		<Unit filename="include/getdate.h" />
 		<Unit filename="include/global.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="include/recordmanip.h" />
-		<Unit filename="include/test.h" />
 		<Unit filename="src/addrecord.cpp" />
+		<Unit filename="src/alarm.cpp" />
+		<Unit filename="src/class.cpp" />
 		<Unit filename="src/database.cpp" />
 		<Unit filename="src/getdate.cpp" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/recordmanip.cpp" />
-		<Unit filename="src/test.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

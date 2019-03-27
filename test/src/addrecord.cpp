@@ -1,4 +1,4 @@
-#include "test.h"
+#include "class.h"
 #include "recordmanip.h"
 #include "addrecord.h"
 #include <iostream>

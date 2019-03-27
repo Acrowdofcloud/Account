@@ -1,5 +1,5 @@
 #pragma once
-#include "test.h"
+#include "class.h"
 using namespace std;
 
 void editrecord(record &records);

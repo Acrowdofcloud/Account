@@ -3,22 +3,41 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include "test.h"
+#include "class.h"
 #include "getdate.h"
 #include "recordmanip.h"
 #include "database.h"
 #include "addrecord.h"
+#include "alarm.h"
 
 using namespace std;
 
 int main() {
-    //double budget = 0;
+    double budget, creditlim = 0;
+    ifstream fin;
+    fin.open(getmonth() + "budget.txt");
+    if (fin.fail()){ofstream fout(getmonth() + "budget.txt");}
+    else{fin >> budget >> creditlim;}
+    fin.close();
+
+    if (budget == 0){cout << "What's your monthly budget? ";
+                     cin >> budget;
+                     ofstream fout(getmonth()+"budget.txt");
+                     fout << budget << " " << creditlim;}
+
+    if (creditlim == 0){cout << "What's your monthly credit limit? ";
+                        cin >> creditlim;
+                        ofstream fout(getmonth()+"budget.txt");
+                        fout << budget << " " << creditlim;}
+
 	//double creditlim = 0;
     int command = -1;
     //int x, index = 0;
 
 	while (command != 0){
         show10();
+        budgetalarm(budget);
+        separation(105);
         printf("What do you want to do?\n");
         printf("0. Return\n");
         printf("1. Add expense  2. Add income  3. Delete record(WIP)   4. Edit record\n");

@@ -1,5 +1,5 @@
 #pragma once
-#include "test.h"
+#include "class.h"
 #include <string>
 
 const record empty;

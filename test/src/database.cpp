@@ -1,12 +1,12 @@
 #include "database.h"
 #include "global.h"
-#include "test.h"
+#include "class.h"
 #include "global.h"
 #include <fstream>
 #include <string>
 #include <iostream>
 #include <vector>
-
+#include "getdate.h"
 using namespace std;
 
 int getNumofRecords(string file) {
@@ -105,7 +105,7 @@ int deleteRecord(record input) {
 }
 
 record stringtoRecord(string& line) {
-    if (line.length() != line_length) {
+    if (line.length() -1  != line_length) {
         cout << "The input is not a valid record\n";
         return ::empty; }
     record extract;

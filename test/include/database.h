@@ -2,7 +2,7 @@
 
 #include <string>
 #include <vector>
-#include "test.h"
+#include "class.h"
 
 int insertRecord(record);
 

@@ -1,4 +1,4 @@
-#include "test.h"
+#include "class.h"
 #include "getdate.h"
 #include <string>
 #include <iostream>
