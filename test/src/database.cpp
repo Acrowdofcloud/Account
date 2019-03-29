@@ -37,12 +37,9 @@ int insertRecord(record input) {
     while (current_line_num < last_line) {
         getline(fin,line);
         current_line_num++;
-        cout << current_line_num << "\n";
     }
     int last_record_date;
     fin >> last_record_date;
-
-    cout << last_record_date << "\n";
 
     if ( last_record_date <= input_date ) {
         fout.open(record_file, ios::app);       //input is newer / the same as the last record
@@ -52,7 +49,7 @@ int insertRecord(record input) {
     }
     else {
         fin.seekg(0,ios::beg);      //input is older
-        vector<string> records(num_of_line+1);
+        string* records = new string[num_of_line+1];
         bool inserted = false;
         for (int i{0};i<num_of_line+1;i++) {
             getline(fin,line);
@@ -67,9 +64,11 @@ int insertRecord(record input) {
         }
         remove ("temp.txt");
         fout.open("temp.txt", ios::app);
-        for (string s : records) {      //write vector to file
-            fout << s << "\n";
+        for (int i{0};i < (num_of_line+1);i++) {      //write array to file
+            fout << records[i] << "\n";
         }
+        delete [] records;
+        records = nullptr;
     }
     fin.close();
     fout.close();
