@@ -1,5 +1,5 @@
 #include <string>
-#include <fstream>
+#include <vector>
 #include "class.h"
 #include "alarm.h"
 #include "getdate.h"
@@ -8,17 +8,18 @@
 using namespace std;
 
 void budgetalarm(double budget){
+    vector<record> search_result;
     string filename = getmonth() + ".txt";
-    ifstream fin(filename);
-    string line;
-    double totalexpense, totalincome = 0;
-    while(getline(fin, line)){
-        if (stringtoRecord(line).getType() == "E"){
-            totalexpense += stringtoRecord(line).getAmount();
-        }
-        else{
-            totalincome += stringtoRecord(line).getAmount();
-        }
+    double totalexpense = 0, totalincome = 0;
+    search_result = searchRecord(filename,"type","E");
+
+    for (int i{0};i < search_result.size();i++) {
+        totalexpense += search_result[i].getAmount();
+    }
+
+    search_result = searchRecord(filename,"type","R");
+    for (int i{0};i < search_result.size();i++) {
+        totalincome += search_result[i].getAmount();
     }
     printf("Total Expense: %f\n", totalexpense);
     printf("Total Income:  %f\n", totalincome);

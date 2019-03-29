@@ -26,7 +26,7 @@ void addexpense(record& records){
     separation(105);
     cout << "Record added:\n";
     cout << "  ";
-    cout << records.toString();
+    cout << records.toString() << "\n";
 }
 
 void addincome(record& records){

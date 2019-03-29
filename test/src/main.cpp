@@ -1,14 +1,15 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
-#include <sstream>
 #include <string>
+#include <vector>
 #include "class.h"
 #include "getdate.h"
 #include "recordmanip.h"
 #include "database.h"
 #include "addrecord.h"
 #include "alarm.h"
+#include "global.h"
 
 using namespace std;
 
@@ -40,7 +41,7 @@ int main() {
         separation(105);
         printf("What do you want to do?\n");
         printf("0. Return\n");
-        printf("1. Add expense  2. Add income  3. Delete record(WIP)   4. Edit record\n");
+        printf("1. Add expense  2. Add income  3. Delete record   4. Edit record\n");
         separation(105);
         cin >> command;
         record entry;
@@ -58,14 +59,11 @@ int main() {
         }
 
         else if(command == 3){
-            //searchrecord()
-            cout << "Delete: WIP,enter whole line for now\n";
-            string line;
-            cin.ignore();
-            getline(cin,line);
-            record target;
-            target = stringtoRecord(line);
-            deleteRecord(target);
+            vector<record> target_list;
+            target_list = search_and_select_record();
+            for (int i{0};i < target_list.size();i++) {
+                deleteRecord(target_list[i]);
+            }
         }
         /*
         else if(command == 4) {
@@ -80,3 +78,4 @@ int main() {
 
     return 0;
 }
+
