@@ -88,7 +88,11 @@ vector<record> search_and_select_record() {
         cout << "\nChoose the record number or type all to choose all\n";
         cin >> record_choice;
         if ( record_choice == "all") { return result; }
-        output.push_back(result[stoi(record_choice) - 1]);
+        while ( record_choice != "n") {
+            output.push_back(result[stoi(record_choice) - 1]);
+            cout << "Choose more record or type \"n\" to contiune\n";
+            cin >> record_choice;
+        }
         return output;
     }
     else {
@@ -104,8 +108,12 @@ vector<record> search_and_select_record() {
         cin >> record_choice;
         if ( record_choice == "all") { return result; }
         int chosen_record_num;
-        chosen_record_num = stoi(record_choice) + (result.size() - 20 - 1);
-        output.push_back(result[chosen_record_num]);
+        while ( record_choice != "n") {
+            chosen_record_num = stoi(record_choice) + (result.size() - 20 - 1);
+            output.push_back(result[chosen_record_num]);
+            cout << "Choose more record or type \"n\" to contiune\n";
+            cin >> record_choice;
+        }
         return output;
     }
 }

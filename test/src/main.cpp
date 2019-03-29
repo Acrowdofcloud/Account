@@ -60,18 +60,21 @@ int main() {
 
         else if(command == 3){
             vector<record> target_list;
-            target_list = search_and_select_record();
-            for (int i{0};i < target_list.size();i++) {
+            target_list = search_and_select_record();       //search_and_select_record() let user choose parameter for searchRecord(),
+            for (int i{0};i < target_list.size();i++) {     //do the search,let user select the record(s),return a vector of records
                 deleteRecord(target_list[i]);
             }
         }
         /*
         else if(command == 4) {
-            cout << "Which record?\n";
-            searchrecord()
-            editrecord()
-            deleteRecord(original)
-            insertRecord(edited)
+            vector<record> target_list;
+            target_list = search_and_select_record();
+            for (int i{0};i < target_list.size();i++) {
+                record temp = target_list[i];
+                editRecord(temp);
+                deleteRecord(target_list[i]);
+                insertRecord(temp);
+            }
         }
         */
 	}
