@@ -48,7 +48,7 @@ vector<record> search_and_select_record() {
     cout << "Input the year and month of the record(YYYYMM):\n";
     string month;
     cin >> month;
-    if ( ! file_exist(month + ".txt") ) {
+    if ( ! file_exist(month + ".txt") ) {       //check file exist
         cout << "Cannot find record file for " << month << "\n";
         output.push_back(::empty);
         return output;
@@ -58,28 +58,29 @@ vector<record> search_and_select_record() {
     cout << "Search the record by:\n1.Date    not done(2.Type   3.Account    4.Usage)\n";
     int choice;
     cin >> choice;
-    switch(choice) {
+    switch(choice) {        //To enter search field and keyword
         case 1: cout << "Input the day(DD) of the record:\n";
                 string day;
                 cin >> day;
                 result = searchRecord(month + ".txt","date",month + day);
 
     }
-    if ( result.size() == 0 ) {
+    if ( result.size() == 0 ) {     //check search did found sth
         cout << "Search returned 0 result\n";
         output.push_back(::empty);
         return output;
     }
 
-    bool show_all{true};
+    bool show_all{true};        //ask user whether to show every result
     if ( result.size() > 20 ) {
         cout << "The search result contain " << result.size() << " results,show all of them? (Y/N)\n";
         char input;
         cin >> input;
         if (input == 'N' || input == 'n') { show_all = false; }
     }
+
     string record_choice;
-    if (show_all) {
+    if (show_all) {         //choosing record
         for (int i{0};i < result.size();i++) {
             cout << setw(4) << i+1 << ":";
             cout << result[i].toString() << "\n";
