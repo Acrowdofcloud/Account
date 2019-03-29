@@ -105,7 +105,7 @@ int deleteRecord(record input) {
 }
 
 record stringtoRecord(string& line) {
-    if (line.length() -1  != line_length) {
+    if (line.length() != line_length) {
         cout << "The input is not a valid record\n";
         return ::empty; }
     record extract;
