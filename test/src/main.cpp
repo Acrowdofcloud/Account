@@ -39,6 +39,8 @@ int main() {
         show10();
         budgetalarm(budget);
         separation(105);
+        creditalarm(creditlim);
+        separation(105);
         printf("What do you want to do?\n");
         printf("0. Return\n");
         printf("1. Add expense  2. Add income  3. Delete record   4. Edit record\n");

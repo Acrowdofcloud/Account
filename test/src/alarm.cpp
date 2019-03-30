@@ -27,3 +27,17 @@ void budgetalarm(double budget){
         printf("Alert!! Your expenses this month is %.0f%% of your budget!\n", ((totalexpense/budget) * 100));
     }
 }
+
+void creditalarm(double creditlim){
+    vector<record> search_results;
+    string filename = getmonth() + ".txt";
+    double totalcredit = 0;
+    search_results = searchRecord(filename, "account", "Card");
+    for (int i = 0; i < search_results.size(); ++i){
+        totalcredit += search_results[i].getAmount();
+    }
+    printf("Total credited expenses: %f\n", totalcredit);
+    if (totalcredit >= creditlim * 0.7){
+        printf("Alert!! Your credited expenses this month is %.0f%% of your credit limit!\n", ((totalcredit/creditlim) * 100));
+    }
+}
