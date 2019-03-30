@@ -48,21 +48,62 @@ vector<record> search_and_select_record() {
     cout << "Input the year and month of the record(YYYYMM):\n";
     string month;
     cin >> month;
-    if ( ! file_exist(month + ".txt") ) {       //check file exist
+    string filename = month + ".txt";
+    if ( ! file_exist(filename) ) {       //check file exist
         cout << "Cannot find record file for " << month << "\n";
         output.push_back(::empty);
         return output;
     }
 
     vector<record> result;
-    cout << "Search the record by:\n1.Date    not done(2.Type   3.Account    4.Usage)\n";
+    cout << "Search the record by:\n1. Date     2. Type    3. Account    4. Usage\n";
     int choice;
     cin >> choice;
     switch(choice) {        //To enter search field and keyword
-        case 1: cout << "Input the day(DD) of the record:\n";
+        case 1:
+            {
+                cout << "Input the day(DD) of the record:\n";
                 string day;
                 cin >> day;
-                result = searchRecord(month + ".txt","date",month + day);
+                result = searchRecord(filename,"date",month + day);
+            }break;
+
+        case 2:
+            {
+                cout << "Type of record?\n";
+                cout << "1. Expense  2. Income\n";
+                int choice;
+                cin >> choice;
+                if (choice == 1) { result = searchRecord(filename,"type","E"); }
+                if (choice == 2) { result = searchRecord(filename,"type","R"); }
+            }break;
+
+        case 3:
+            {
+                cout << "Input the account of the record:\n";
+                //string account_list[3]{"Cash","Bank","Card"};
+                cout << "1. Cash     2. Card      3. Bank\n";
+                int choice;
+                cin >> choice;
+                if (choice == 1) { result = searchRecord(filename,"account","Cash"); }
+                if (choice == 2) { result = searchRecord(filename,"account","Card"); }
+                if (choice == 3) { result = searchRecord(filename,"account","Bank"); }
+            }break;
+
+        case 4:
+            {
+                cout << "Input the usage of the record:\n";
+                //string usage_list[]{};
+                cout << "1. Entertainment   2. Transport   3. Food   4. Bill    5. Salary\n";
+                int choice;
+                cin >> choice;
+                if (choice == 1) { result = searchRecord(filename,"usage","Entertainment"); }
+                if (choice == 2) { result = searchRecord(filename,"usage","Transport"); }
+                if (choice == 3) { result = searchRecord(filename,"usage","Food"); }
+                if (choice == 4) { result = searchRecord(filename,"usage","Bill"); }
+                if (choice == 5) { result = searchRecord(filename,"usage","Salary"); }
+
+            }break;
 
     }
     if ( result.size() == 0 ) {     //check search did found sth
@@ -85,11 +126,16 @@ vector<record> search_and_select_record() {
             cout << setw(4) << i+1 << ":";
             cout << result[i].toString() << "\n";
         }
-        cout << "\nChoose the record number or type all to choose all\n";
+        cout << "\nChoose the record number or type all to choose all,type 0 to exit\n";
         cin >> record_choice;
+        if ( record_choice == "0") {
+            output.push_back(::empty);
+            return output;
+        }
         if ( record_choice == "all") { return result; }
         while ( record_choice != "n") {
             output.push_back(result[stoi(record_choice) - 1]);
+            if (output.size() == result.size()) {break;}        //skip asking again if chosen all
             cout << "Choose more record or type \"n\" to contiune\n";
             cin >> record_choice;
         }
