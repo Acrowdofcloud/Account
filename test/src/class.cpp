@@ -32,7 +32,7 @@ void record::input(string field) {
     while (result != "ok") {
         getline(cin, line);
         if (field == "date") {
-            if ( line.length() == 0) {line = gettime();}
+            if ( line.length() == 0) {line = gettime();}    //set as current date if input blank
             result = setDate(line);
         }
         if (field == "account") result = setAccount(line);

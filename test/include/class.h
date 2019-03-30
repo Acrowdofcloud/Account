@@ -18,15 +18,13 @@ public:
     std::string getNote() const;
     double getAmount() const;
     std::string getType() const;
-    int getLineNum() const;
 
-    std::string setDate(std::string);
+    std::string setDate(std::string);           //setter with value checking
     std::string setAccount(std::string);
     std::string setAmount(std::string);
     std::string setUsage(std::string);
     std::string setNote(std::string);
     std::string setType(std::string);
-    int setLineNum(int);
 
     void input(std::string);
 

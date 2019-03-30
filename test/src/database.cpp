@@ -110,7 +110,7 @@ vector<record> searchRecord(string file,string field,string searchword) {       
     if ( field == "usage" ) {
         int usage_startpos = 11+amount_width+1;
         while ( getline(fin,line) ) {
-            if (remove_preceding_space( line.substr(usage_startpos,usage_width) ) == searchword) {
+            if (removePrecedingSpace( line.substr(usage_startpos,usage_width) ) == searchword) {
                 temp = stringtoRecord(line);
                 result.push_back(temp);
             }
@@ -120,7 +120,7 @@ vector<record> searchRecord(string file,string field,string searchword) {       
     if ( field == "account" ) {
         int account_startpos = 11+amount_width+1+account_width+1;
         while ( getline(fin,line) ) {
-            if (remove_preceding_space( line.substr(account_startpos,account_width) ) == searchword) {
+            if (removePrecedingSpace( line.substr(account_startpos,account_width) ) == searchword) {
                 temp = stringtoRecord(line);
                 result.push_back(temp);
             }
@@ -162,21 +162,21 @@ record stringtoRecord(string& line) {
     record extract;
     extract.setDate(line.substr(0,8));
     extract.setType(line.substr(9,1));
-    extract.setAmount(remove_all_space(line.substr(11,amount_width)));
-    extract.setUsage( remove_preceding_space( line.substr(11+amount_width+1,usage_width) ) );
-    extract.setAccount( remove_preceding_space( line.substr(11+amount_width+1+account_width+1,account_width) ) );
-    extract.setNote(remove_preceding_space(line.substr(line_length-note_width,note_width)));
+    extract.setAmount(removeAllSpace(line.substr(11,amount_width)));
+    extract.setUsage( removePrecedingSpace( line.substr(11+amount_width+1,usage_width) ) );
+    extract.setAccount( removePrecedingSpace( line.substr(11+amount_width+1+account_width+1,account_width) ) );
+    extract.setNote(removePrecedingSpace(line.substr(line_length-note_width,note_width)));
     return extract;
 }
 
-string remove_all_space(string input) {
+string removeAllSpace(string input) {
     while (input.find(" ") != string::npos) {
         input.erase(input.find(" "),1);
     }
     return input;
 }
 
-string remove_preceding_space(string input) {
+string removePrecedingSpace(string input) {
     int pos_of_first_nonspace{0};
     for (int i{0};i < input.length();i++) {
         if ( input.substr(i,1) != " ") {

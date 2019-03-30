@@ -43,13 +43,13 @@ void show10(){
     fin.close();
 }
 
-vector<record> search_and_select_record() {
+vector<record> searchAndSelectRecord() {
     vector<record> output;
     cout << "Input the year and month of the record(YYYYMM):\n";
     string month;
     cin >> month;
     string filename = month + ".txt";
-    if ( ! file_exist(filename) ) {       //check file exist
+    if ( ! fileExist(filename) ) {       //check file exist
         cout << "Cannot find record file for " << month << "\n";
         output.push_back(::empty);
         return output;
@@ -164,7 +164,7 @@ vector<record> search_and_select_record() {
     }
 }
 
-bool file_exist(string file) {      //return true if file exist
+bool fileExist(string file) {      //return true if file exist
     ifstream fin(file);
     if (fin.fail()) { return false; }
     fin.close();

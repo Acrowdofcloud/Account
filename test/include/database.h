@@ -10,11 +10,11 @@ std::vector<record> searchRecord(std::string file,std::string field,std::string 
 
 int deleteRecord(record);
 
-int getNumofRecords(std::string);
+int getNumofRecords(std::string file);
 
 record stringtoRecord(std::string&);
 
-std::string remove_all_space(std::string);
+std::string removeAllSpace(std::string);
 
-std::string remove_preceding_space(std::string input);
+std::string removePrecedingSpace(std::string);
 

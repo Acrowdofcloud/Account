@@ -2,7 +2,7 @@
 
 #include <string>
 
-std::string getmonth();
+std::string getmonth();     //get current month in YYYYMM
 
-std::string gettime();
+std::string gettime();      //get current date in YYYYMMDD
 
