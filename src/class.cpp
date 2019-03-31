@@ -27,7 +27,7 @@ double record::getAmount() const { return amount; }
 string record::getType() const { return type; }
 
 
-void record::input(string field) {
+void record::input(string field, string usage) {
     string result,line;
     while (result != "ok") {
         getline(cin, line);
@@ -37,7 +37,7 @@ void record::input(string field) {
         }
         if (field == "account") result = setAccount(line);
         if (field == "amount") result = setAmount(line);
-        if (field == "usage") result = setUsage(line);
+        if (field == "usage") result = setUsage(usage);
         if (field == "note") result = setNote(line);
     }
 }

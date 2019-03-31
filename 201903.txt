@@ -1,0 +1,3 @@
+20190331 R        50000.00               Salary                 Bank                      Commision
+20190331 E          150.00                 Food                 Cash                               
+20190331 R         1500.00               Others                 Bank                               

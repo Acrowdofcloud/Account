@@ -26,7 +26,7 @@ public:
     std::string setNote(std::string);
     std::string setType(std::string);
 
-    void input(std::string);
+    void input(std::string, std::string);
 
     std::string toString() const;
 
