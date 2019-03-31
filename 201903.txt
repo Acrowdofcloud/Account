@@ -1,2 +1,0 @@
-20190307 R       120000.00               Salary                 Bank                               
-20190331 E        15000.00       Entertainments                 Cash                               
