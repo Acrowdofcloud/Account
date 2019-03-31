@@ -1,6 +1,7 @@
 ## Ignore Code::Blocks files
 *.depend
 *.layout
+**.txt
 #*.cbp
 
 ## Ignore Visual Studio temporary files, build results, and
