@@ -94,15 +94,15 @@ vector<record> searchAndSelectRecord() {
             {
                 cout << "Input the usage of the record:\n";
                 //string usage_list[]{};
-                cout << "1. Entertainment   2. Transport   3. Food   4. Bill    5. Salary\n";
+                cout << "1. Entertainments   2. Transports   3. Food   4. Bill    5. Salary   6. Others\n";
                 int choice;
                 cin >> choice;
-                if (choice == 1) { result = searchRecord(filename,"usage","Entertainment"); }
-                if (choice == 2) { result = searchRecord(filename,"usage","Transport"); }
+                if (choice == 1) { result = searchRecord(filename,"usage","Entertainments"); }
+                if (choice == 2) { result = searchRecord(filename,"usage","Transports"); }
                 if (choice == 3) { result = searchRecord(filename,"usage","Food"); }
                 if (choice == 4) { result = searchRecord(filename,"usage","Bill"); }
                 if (choice == 5) { result = searchRecord(filename,"usage","Salary"); }
-
+                if (choice == 6) { result = searchRecord(filename,"usage","Others"); }
             }break;
 
     }
