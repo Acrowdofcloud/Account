@@ -1,6 +1,9 @@
+#include "getdate.h"
 #include <ctime>
 #include <string>
+
 using namespace std;
+
 string temptime, tempmonth, year, month, day;
 time_t now = time(0);
 
