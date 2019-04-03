@@ -1,12 +1,16 @@
 #pragma once
+#include "class.h"
+#include <vector>
 
-#include <structs.h>
+using namespace std;
 
-void deleterecord(struct record &records);
+void editrecord(record &records);
 
-void printallrecords(std::string todaymonth, struct record records[]);
+void show10();
 
-void printsinglerecord(struct record records);
+std::vector<record> searchAndSelectRecord();     //Interface for user to choose parameters for searchRecord(),
+                                                    //and for user to select from the search result
+                                                    //returns the selected records in a vector
+bool fileExist(string);
 
-void editrecord(struct record &records);
-
+void separation(int);
