@@ -1,0 +1,5 @@
+Entertainment	    1000		100%
+    Transport	       0		0%
+         Food	       0		0%
+         Bill	       0		0%
+       Others	       0		0%
