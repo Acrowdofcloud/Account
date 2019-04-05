@@ -9,6 +9,7 @@
 #include <sstream>
 #include <vector>
 #include <iomanip>
+#include <cctype>
 
 using namespace std;
 
@@ -51,7 +52,6 @@ vector<record> searchAndSelectRecord() {
     string filename = month + ".txt";
     if ( ! fileExist(filename) ) {       //check file exist
         cout << "Cannot find record file for " << month << "\n";
-        output.push_back(::empty);
         return output;
     }
 
@@ -108,7 +108,6 @@ vector<record> searchAndSelectRecord() {
     }
     if ( result.size() == 0 ) {     //check search did found sth
         cout << "Search returned 0 result\n";
-        output.push_back(::empty);
         return output;
     }
 
@@ -126,14 +125,13 @@ vector<record> searchAndSelectRecord() {
             cout << setw(4) << i+1 << ":";
             cout << result[i].toString() << "\n";
         }
-        cout << "\nChoose the record number or type all to choose all,type 0 to exit\n";
+        cout << "\nChoose the record number or type all to choose all,type e to exit\n";
         cin >> record_choice;
-        if ( record_choice == "0") {
-            output.push_back(::empty);
+        if ( record_choice == "e") {
             return output;
         }
         if ( record_choice == "all") { return result; }
-        while ( record_choice != "n") {
+        while ( StrisNumber(record_choice) ) {
             output.push_back(result[stoi(record_choice) - 1]);
             if (output.size() == result.size()) {break;}        //skip asking again if chosen all
             cout << "Choose more record or type \"n\" to contiune\n";
@@ -154,7 +152,7 @@ vector<record> searchAndSelectRecord() {
         cin >> record_choice;
         if ( record_choice == "all") { return result; }
         int chosen_record_num;
-        while ( record_choice != "n") {
+        while ( StrisNumber(record_choice) ) {
             chosen_record_num = stoi(record_choice) + (result.size() - 20 - 1);
             output.push_back(result[chosen_record_num]);
             cout << "Choose more record or type \"n\" to contiune\n";
@@ -168,6 +166,13 @@ bool fileExist(string file) {      //return true if file exist
     ifstream fin(file);
     if (fin.fail()) { return false; }
     fin.close();
+    return true;
+}
+
+bool StrisNumber(string input) {
+    for (int i{0}; i < input.length(); i++) {
+        if (! isdigit(input[i])) { return false; }
+    }
     return true;
 }
 

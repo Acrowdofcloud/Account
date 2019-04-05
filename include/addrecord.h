@@ -4,6 +4,8 @@ void addincome(record &records);
 
 void addexpense(record &records);
 
-std::string expensetypes();
+void editRecord(record &records);
 
-std::string incometypes();
+std::string expensetypes(std::string mode);
+
+std::string incometypes(std::string mode);

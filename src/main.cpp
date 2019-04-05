@@ -71,7 +71,8 @@ int main() {
 
         else if(command == 3){
             vector<record> target_list;
-            target_list = searchAndSelectRecord();       //searchAndSelectRecord() let user choose parameter for searchRecord(),
+            target_list = searchAndSelectRecord();       //searchAndSelectRecord() let user choose parameter for searchRecord()
+            if ( target_list.size() == 0) { continue; }
             for (int i{0};i < target_list.size();i++) {     //do the search,let user select the record(s),return a vector of records
                 deleteRecord(target_list[i]);
             }
@@ -81,10 +82,10 @@ int main() {
             creditalarm(creditlim);
             separation(105);
         }
-        /*
         else if(command == 4) {
             vector<record> target_list;
             target_list = searchAndSelectRecord();
+            if ( target_list.size() == 0) { continue; }
             for (int i{0};i < target_list.size();i++) {
                 record temp = target_list[i];
                 editRecord(temp);
@@ -92,7 +93,6 @@ int main() {
                 insertRecord(temp);
             }
         }
-        */
 
         else if(command == 5){
             string reportmonth;

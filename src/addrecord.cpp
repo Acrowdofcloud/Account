@@ -18,9 +18,10 @@ void addexpense(record& records){
     records.input("amount", "NULL");
 
     cout << "Usage?\n";
-    string usage = expensetypes();
-    records.input("usage", usage);
+    string usage = expensetypes("add");
+    records.setUsage(usage);
 
+    cin.ignore();
     cout << "Notes?\n";
     records.input("note", "NULL");
 
@@ -31,7 +32,7 @@ void addexpense(record& records){
 }
 
 void addincome(record& records){
-    cout << "Newdate? Leave blank to set as today\n";
+    cout << "New date? Leave blank to set as today\n";
     cin.ignore();
     records.input("date", "NULL");
 
@@ -42,9 +43,10 @@ void addincome(record& records){
     records.input("amount", "NULL");
 
     cout << "Source?\n";
-    string source = incometypes();
-    records.input("usage", source);
+    string source = incometypes("add");
+    records.setUsage(source);
 
+    cin.ignore();
     cout << "Notes?\n";
     records.input("note", "NULL");
 
@@ -56,8 +58,41 @@ void addincome(record& records){
 
 }
 
-string expensetypes(){
+void editRecord(record &records) {
+    cout << "New date? Leave blank to skip\n" << "Current: " << records.getDate() << endl;
+    cin.ignore();
+    records.input("date", "edit");
+
+    cout << "Account? Leave blank to skip\n" << "Current: " << records.getAccount() << endl;
+    records.input("account", "edit");
+
+    cout << "Amount? Leave blank to skip\n" << "Current: " << records.getAmount() << endl;
+    records.input("amount", "edit");
+
+    cout << "Source?\n";
+    string source;
+    if (records.getType() == "E") { source = expensetypes("edit"); }
+    else { source = incometypes("edit"); }
+
+    if (source.length() != 0) {
+        records.setUsage(source);
+    }
+
+    cout << "Notes? Leave blank to skip\n" << "Current: " << records.getNote() << endl;
+    cin.ignore();
+    records.input("note", "edit");
+
+    separation(105);
+
+    cout << "Record edited:\n";
+    cout << "  ";
+    cout << records.toString() << endl;
+
+}
+
+string expensetypes(string mode){
     printf("1. Transports   2. Food   3. Entertainments   4. Bill   5. Others\n");
+    if ( mode == "edit" ) { cout << "6. Skip\n"; }
     int t;
     cin >> t;
     switch (t){
@@ -80,11 +115,16 @@ string expensetypes(){
         case 5:{
             return "Others";
         }break;
+
+        case 6:{
+            return "";
+        }break;
     }
 }
 
-string incometypes(){
+string incometypes(string mode){
     printf("1. Salary   2. Others\n");
+    if ( mode == "edit" ) { cout << "3. Skip\n"; }
     int t;
     cin >> t;
     switch (t){
@@ -93,6 +133,9 @@ string incometypes(){
         }break;
         case 2:{
             return "Others";
+        }break;
+        case 3:{
+            return "";
         }break;
 
     }

@@ -13,4 +13,6 @@ std::vector<record> searchAndSelectRecord();     //Interface for user to choose 
                                                     //returns the selected records in a vector
 bool fileExist(string);
 
+bool StrisNumber(string);
+
 void separation(int);

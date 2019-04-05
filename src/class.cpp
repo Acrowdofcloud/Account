@@ -27,12 +27,18 @@ double record::getAmount() const { return amount; }
 string record::getType() const { return type; }
 
 
-void record::input(string field, string usage) {
+void record::input(string field, string mode) {  //edit mode and add mode
     string result,line;
     while (result != "ok") {
+
         getline(cin, line);
+        if ( line.length() == 0 && mode == "edit" ) {    //check mode. if input blank in edit mode,skip setting value
+            result = "ok";
+            continue;
+        }
+
         if (field == "date") {
-            if ( line.length() == 0) {line = gettime();}    //set as current date if input blank
+            if ( line.length() == 0 ) {line = gettime();}    //set as current date if input blank in add mode
             result = setDate(line);
         }
         if (field == "account") result = setAccount(line);
