@@ -43,6 +43,7 @@
 		<Unit filename="include/addrecord.h" />
 		<Unit filename="include/alarm.h" />
 		<Unit filename="include/class.h" />
+		<Unit filename="include/config.h" />
 		<Unit filename="include/database.h" />
 		<Unit filename="include/getdate.h" />
 		<Unit filename="include/global.h">
@@ -53,6 +54,7 @@
 		<Unit filename="src/addrecord.cpp" />
 		<Unit filename="src/alarm.cpp" />
 		<Unit filename="src/class.cpp" />
+		<Unit filename="src/config.cpp" />
 		<Unit filename="src/database.cpp" />
 		<Unit filename="src/getdate.cpp" />
 		<Unit filename="src/main.cpp" />

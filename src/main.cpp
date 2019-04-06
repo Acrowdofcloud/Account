@@ -11,6 +11,7 @@
 #include "alarm.h"
 #include "global.h"
 #include "report.h"
+#include "config.h"
 
 using namespace std;
 
@@ -42,7 +43,7 @@ int main() {
         printf("What do you want to do?\n");
         printf("0. Return\n");
         printf("1. Add expense  2. Add income  3. Delete record   4. Edit record\n");
-        printf("5. Statistical report\n");
+        printf("5. Statistical report   6. Configuration\n");
         separation(105);
         cin >> command;
         record entry;
@@ -113,6 +114,9 @@ int main() {
                 separation(105);
             }
             else{cout << "No record for " << reportmonth << endl;}
+        }
+        else if(command == 6){
+            configmenu();
         }
 	}
 
