@@ -4,3 +4,5 @@
 
 const record empty;
 const int line_length = empty.toString().length();
+
+void separation(int);

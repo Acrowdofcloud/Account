@@ -4,6 +4,7 @@
 #include "alarm.h"
 #include "getdate.h"
 #include "database.h"
+#include "global.h"
 
 using namespace std;
 
@@ -26,6 +27,8 @@ void budgetalarm(double budget){
     if (totalexpense >= 0.7 * budget){
         printf("Alert!! Your expenses this month is %.0f%% of your budget!\n", ((totalexpense/budget) * 100));
     }
+    separation(105);
+
 }
 
 void creditalarm(double creditlim){
@@ -39,5 +42,7 @@ void creditalarm(double creditlim){
     printf("Total credited expenses: %f\n", totalcredit);
     if (totalcredit >= creditlim * 0.7){
         printf("Alert!! Your credited expenses this month is %.0f%% of your credit limit!\n", ((totalcredit/creditlim) * 100));
+
     }
+    separation(105);
 }

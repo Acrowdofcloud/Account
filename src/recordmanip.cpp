@@ -13,13 +13,6 @@
 
 using namespace std;
 
-void separation(int len){
-    for (int i = 0; i < len; i++){
-        cout << "*";
-    }
-    cout << endl;
-}
-
 void show10(){
     int num_of_line = getNumofRecords(getmonth() + ".txt");
     ifstream fin(getmonth() + ".txt");

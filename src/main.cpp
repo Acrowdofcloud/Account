@@ -33,13 +33,11 @@ int main() {
                         ofstream fout(getmonth()+"budget.txt");
                         fout << budget << " " << creditlim;}
     int command = -1;
-    show10();
-    budgetalarm(budget);
-    separation(105);
-    creditalarm(creditlim);
-    separation(105);
 
 	while (command != 0){
+        show10();
+        budgetalarm(budget);
+        creditalarm(creditlim);
         printf("What do you want to do?\n");
         printf("0. Return\n");
         printf("1. Add expense  2. Add income  3. Delete record   4. Edit record\n");
@@ -48,26 +46,19 @@ int main() {
         cin >> command;
         record entry;
 
+
+
         if (command == 1){
             entry.setType("E");
             addexpense(entry);
             insertRecord(entry);
-            show10();
-            budgetalarm(budget);
-            separation(105);
-            creditalarm(creditlim);
-            separation(105);
         }
 
         else if (command == 2){
             entry.setType("R");
             addincome(entry);
             insertRecord(entry);
-            show10();
-            budgetalarm(budget);
-            separation(105);
-            creditalarm(creditlim);
-            separation(105);
+
         }
 
         else if(command == 3){
@@ -77,11 +68,7 @@ int main() {
             for (int i{0};i < target_list.size();i++) {     //do the search,let user select the record(s),return a vector of records
                 deleteRecord(target_list[i]);
             }
-            show10();
-            budgetalarm(budget);
-            separation(105);
-            creditalarm(creditlim);
-            separation(105);
+
         }
         else if(command == 4) {
             vector<record> target_list;
@@ -117,6 +104,9 @@ int main() {
         }
         else if(command == 6){
             configmenu();
+            fin.open(getmonth() + "budget.txt");
+            fin >> budget >> creditlim;
+            fin.close();
         }
 	}
 
