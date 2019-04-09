@@ -34,45 +34,56 @@ int main() {
                         fout << budget << " " << creditlim;}
     int command = -1;
 
+    cout << "Latest records:\n";
+    show10();
 	while (command != 0){
-        show10();
         budgetalarm(budget);
         creditalarm(creditlim);
         printf("What do you want to do?\n");
         printf("0. Return\n");
-        printf("1. Add expense  2. Add income  3. Delete record   4. Edit record\n");
-        printf("5. Statistical report   6. Configuration\n");
+        printf("1. Display records  2. Add expense  3. Add income  4. Delete record   5. Edit record\n");
+        printf("6. Statistical report   7. Configuration\n");
         separation(105);
         cin >> command;
         record entry;
 
-
-
         if (command == 1){
+            int choice;
+            cout << "1. Show latest 10 records  2. Search records\n";
+            cin >> choice;
+            if ( choice == 1 ) { show10(); }
+            else if ( choice == 2 ) { searchAndSelectRecord("display"); }
+            else {continue;}
+            cout << "Press Enter to Continue\n";
+            cin.ignore();
+            cin.ignore();
+        }
+
+        if (command == 2){
             entry.setType("E");
             addexpense(entry);
             insertRecord(entry);
         }
 
-        else if (command == 2){
+        else if (command == 3){
             entry.setType("R");
             addincome(entry);
             insertRecord(entry);
 
         }
 
-        else if(command == 3){
+        else if(command == 4){
             vector<record> target_list;
-            target_list = searchAndSelectRecord();       //searchAndSelectRecord() let user choose parameter for searchRecord()
+            target_list = searchAndSelectRecord("select");       //searchAndSelectRecord() let user choose parameter for searchRecord()
             if ( target_list.size() == 0) { continue; }
             for (int i{0};i < target_list.size();i++) {     //do the search,let user select the record(s),return a vector of records
                 deleteRecord(target_list[i]);
             }
 
         }
-        else if(command == 4) {
+        else if(command == 5) {
             vector<record> target_list;
-            target_list = searchAndSelectRecord();
+            target_list = searchAndSelectRecord("select");
             if ( target_list.size() == 0) { continue; }
             for (int i{0};i < target_list.size();i++) {
                 record temp = target_list[i];
@@ -82,7 +93,7 @@ int main() {
             }
         }
 
-        else if(command == 5){
+        else if(command == 6){
             string reportmonth;
             string line;
             cout << "Which month? (YYYYMM) Leave blank as current month\n";
@@ -102,7 +113,7 @@ int main() {
             }
             else{cout << "No record for " << reportmonth << endl;}
         }
-        else if(command == 6){
+        else if(command == 7){
             configmenu();
             fin.open(getmonth() + "budget.txt");
             fin >> budget >> creditlim;

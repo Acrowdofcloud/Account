@@ -37,7 +37,7 @@ void show10(){
     fin.close();
 }
 
-vector<record> searchAndSelectRecord() {
+vector<record> searchAndSelectRecord(string mode) {
     vector<record> output;
     cout << "Input the year and month of the record(YYYYMM):\n";
     string month;
@@ -99,6 +99,8 @@ vector<record> searchAndSelectRecord() {
             }break;
 
     }
+    separation(105);
+
     if ( result.size() == 0 ) {     //check search did found sth
         cout << "Search returned 0 result\n";
         return output;
@@ -118,6 +120,7 @@ vector<record> searchAndSelectRecord() {
             cout << setw(4) << i+1 << ":";
             cout << result[i].toString() << "\n";
         }
+        if (mode == "display") { return output; }
         cout << "\nChoose the record number or type all to choose all,type e to exit\n";
         cin >> record_choice;
         if ( record_choice == "e") {
@@ -141,6 +144,7 @@ vector<record> searchAndSelectRecord() {
             cout << result[i].toString() << "\n";
             line_number++;
         }
+        if (mode == "display") { return output; }
         cout << "\nChoose the record number or type all to choose all:\n";
         cin >> record_choice;
         if ( record_choice == "all") { return result; }
