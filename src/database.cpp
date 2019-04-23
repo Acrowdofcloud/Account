@@ -88,7 +88,7 @@ vector<record> searchRecord(string file,string field,string searchword) {       
     }
     ifstream fin(file);
     string line;
-    record temp;                //compare searchword to substring,add matches to vector result
+    record temp;                //compare searchword to substring,add matched records to vector result
     if ( field == "type" ) {
         while ( getline(fin,line) ) {
             if (line.substr(9,1) == searchword) {

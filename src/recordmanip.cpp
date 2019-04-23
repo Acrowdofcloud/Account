@@ -74,7 +74,6 @@ vector<record> searchAndSelectRecord(string mode) {
         case 3:
             {
                 cout << "Input the account of the record:\n";
-                //string account_list[3]{"Cash","Bank","Card"};
                 cout << "1. Cash     2. Card      3. Bank\n";
                 int choice;
                 cin >> choice;
@@ -86,7 +85,6 @@ vector<record> searchAndSelectRecord(string mode) {
         case 4:
             {
                 cout << "Input the usage of the record:\n";
-                //string usage_list[]{};
                 cout << "1. Entertainments   2. Transports   3. Food   4. Bill    5. Salary   6. Others\n";
                 int choice;
                 cin >> choice;
@@ -120,7 +118,7 @@ vector<record> searchAndSelectRecord(string mode) {
             cout << setw(4) << i+1 << ":";
             cout << result[i].toString() << "\n";
         }
-        if (mode == "display") { return output; }
+        if (mode == "display") { return output; }       //skip choosing if mode is display
         cout << "\nChoose the record number or type all to choose all,type e to exit\n";
         cin >> record_choice;
         if ( record_choice == "e") {
@@ -144,7 +142,7 @@ vector<record> searchAndSelectRecord(string mode) {
             cout << result[i].toString() << "\n";
             line_number++;
         }
-        if (mode == "display") { return output; }
+        if (mode == "display") { return output; }       //skip choosing if mode is display
         cout << "\nChoose the record number or type all to choose all:\n";
         cin >> record_choice;
         if ( record_choice == "all") { return result; }

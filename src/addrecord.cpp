@@ -6,8 +6,9 @@
 using namespace std;
 
 
-void addexpense(record& records){ //add new expense
-    cout << "Newdate? Leave blank to set as today\n"; //get the date for the record
+
+void addexpense(record& records){       //create new record
+    cout << "Newdate? Leave blank to set as today\n";
     cin.ignore();
     records.input("date", "NULL");//assign date to the temporary record to be added
 
@@ -31,7 +32,8 @@ void addexpense(record& records){ //add new expense
     cout << records.toString() << "\n";
 }
 
-void addincome(record& records){//all comments are the same as the function addexpense()
+
+void addincome(record& records){        //create new record
     cout << "New date? Leave blank to set as today\n";
     cin.ignore();
     records.input("date", "NULL");
@@ -61,6 +63,7 @@ void addincome(record& records){//all comments are the same as the function adde
 void editRecord(record &records) {//edit record
     //ask if the user wants to change the date for the record
     //not allowed to move the record to another month
+
     cout << "New date? Leave blank to skip\n" << "Current: " << records.getDate() << endl;
     cin.ignore();
     records.input("date", "edit");//change the date for the record
