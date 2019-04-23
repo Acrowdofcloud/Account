@@ -14,8 +14,8 @@ void configmenu(){
     while (con != 0){
         separation(105);
         printf("Configuration Menu: \n");
-        printf("0. return\n");
-        printf("1. Change budget   2. Change Credit Limit   3. Manage Usages   4. Manage Accounts\n");
+        printf("0. Return\n");
+        printf("1. Change budget   2. Change Credit Limit\n");
         separation(105);
         cin >> con;
 
