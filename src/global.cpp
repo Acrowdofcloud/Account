@@ -2,7 +2,7 @@
 #include "global.h"
 using namespace std;
 
-void separation(int len){
+void separation(int len){//just print a separation line
     for (int i = 0; i < len; i++){
         cout << "*";
     }

@@ -2,7 +2,7 @@
 
 void report(std::string);
 
-void writereport(std::string, double, double, double, double, double, double, double, double, double);
+void writereport(std::string, double, double, double, double, double, double, double, double);
 
 double calexpense(std::string);
 

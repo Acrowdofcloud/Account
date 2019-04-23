@@ -8,7 +8,7 @@ string temptime, tempmonth, year, month, day;
 time_t now = time(0);
 
 
-string getmonth(){
+string getmonth(){//get current month of the os
     tm *ltm = localtime(&now);
 
     year = to_string(1900 + ltm->tm_year);
@@ -21,7 +21,7 @@ string getmonth(){
     return tempmonth;
 }
 
-string gettime(){
+string gettime(){//get current date of the os
     tm *ltm = localtime(&now);
 
     year = to_string(1900 + ltm->tm_year);

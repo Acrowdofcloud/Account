@@ -28,23 +28,23 @@ void configmenu(){
     }
 }
 
-void changebudget(){
+void changebudget(){//allow user to change the budget for current month
     double oldbud, oldcre, newbud;
     ifstream fin(getmonth() + "budget.txt");
-    fin >> oldbud >> oldcre;
+    fin >> oldbud >> oldcre;//get original budget and credit limit
     fin.close();
     cout << "Old budget: " << oldbud << endl;
     cout << "New budget: ";
-    cin >> newbud;
+    cin >> newbud; //get new budget
 
-    ofstream fout(getmonth()+"budget.txt");
+    ofstream fout(getmonth()+"budget.txt");//cover the old budget and credit limit
     fout << newbud << " " << oldcre;
     fout.close();
     separation(105);
     cout << "Budget changed\n";
 }
 
-void changecredit(){
+void changecredit(){//comments are pretty much the same as function changebudget()
     double oldbud, oldcre, newcre;
     ifstream fin(getmonth() + "budget.txt");
     fin >> oldbud >> oldcre;

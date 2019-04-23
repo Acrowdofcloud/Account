@@ -6,24 +6,24 @@
 using namespace std;
 
 
-void addexpense(record& records){
-    cout << "Newdate? Leave blank to set as today\n";
+void addexpense(record& records){ //add new expense
+    cout << "Newdate? Leave blank to set as today\n"; //get the date for the record
     cin.ignore();
-    records.input("date", "NULL");
+    records.input("date", "NULL");//assign date to the temporary record to be added
 
-    cout << "Account? (Default account: Cash)\n";
-    records.input("account", "NULL");
+    cout << "Account? (Default account: Cash)\n";//get account for the record
+    records.input("account", "NULL");//assign account to the temporary record to be added
 
-    cout << "Amount?\n";
-    records.input("amount", "NULL");
+    cout << "Amount?\n";//get amount for the record
+    records.input("amount", "NULL");//assign amount to the temporary record to be added
 
     cout << "Usage?\n";
-    string usage = expensetypes("add");
-    records.setUsage(usage);
+    string usage = expensetypes("add");//get usage for the record
+    records.setUsage(usage);//assign usage to the temporary record to be added
 
     cin.ignore();
-    cout << "Notes?\n";
-    records.input("note", "NULL");
+    cout << "Notes?\n";//allow user to add note for the record
+    records.input("note", "NULL");//assign note to the temporary record to be added
 
     separation(105);
     cout << "Record added:\n";
@@ -31,7 +31,7 @@ void addexpense(record& records){
     cout << records.toString() << "\n";
 }
 
-void addincome(record& records){
+void addincome(record& records){//all comments are the same as the function addexpense()
     cout << "New date? Leave blank to set as today\n";
     cin.ignore();
     records.input("date", "NULL");
@@ -58,21 +58,26 @@ void addincome(record& records){
 
 }
 
-void editRecord(record &records) {
+void editRecord(record &records) {//edit record
+    //ask if the user wants to change the date for the record
+    //not allowed to move the record to another month
     cout << "New date? Leave blank to skip\n" << "Current: " << records.getDate() << endl;
     cin.ignore();
-    records.input("date", "edit");
+    records.input("date", "edit");//change the date for the record
 
+    //ask if the user wants to change the account for the record
     cout << "Account? Leave blank to skip\n" << "Current: " << records.getAccount() << endl;
-    records.input("account", "edit");
+    records.input("account", "edit");//change the account of the record
 
+    //ask if the user wants to change the amount for the record
     cout << "Amount? Leave blank to skip\n" << "Current: " << records.getAmount() << endl;
-    records.input("amount", "edit");
+    records.input("amount", "edit");//change amount for record
 
+    //ask if the user wants to change the usage for the record
     cout << "Source?\n";
     string source;
     if (records.getType() == "E") { source = expensetypes("edit"); }
-    else { source = incometypes("edit"); }
+    else { source = incometypes("edit"); } //change usage
 
     if (source.length() != 0) {
         records.setUsage(source);
@@ -90,7 +95,7 @@ void editRecord(record &records) {
 
 }
 
-string expensetypes(string mode){
+string expensetypes(string mode){//get preset types for user
     printf("1. Transports   2. Food   3. Entertainments   4. Bill   5. Others\n");
     if ( mode == "edit" ) { cout << "6. Skip\n"; }
     int t;
@@ -122,7 +127,7 @@ string expensetypes(string mode){
     }
 }
 
-string incometypes(string mode){
+string incometypes(string mode){//get preset types for user
     printf("1. Salary   2. Others\n");
     if ( mode == "edit" ) { cout << "3. Skip\n"; }
     int t;
