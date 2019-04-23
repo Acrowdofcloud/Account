@@ -6,7 +6,7 @@
 using namespace std;
 
 
-void addexpense(record& records){
+void addexpense(record& records){       //create new record
     cout << "Newdate? Leave blank to set as today\n";
     cin.ignore();
     records.input("date", "NULL");
@@ -31,7 +31,7 @@ void addexpense(record& records){
     cout << records.toString() << "\n";
 }
 
-void addincome(record& records){
+void addincome(record& records){        //create new record
     cout << "New date? Leave blank to set as today\n";
     cin.ignore();
     records.input("date", "NULL");
@@ -58,7 +58,7 @@ void addincome(record& records){
 
 }
 
-void editRecord(record &records) {
+void editRecord(record &records) {      //change input record
     cout << "New date? Leave blank to skip\n" << "Current: " << records.getDate() << endl;
     cin.ignore();
     records.input("date", "edit");
