@@ -1,4 +1,5 @@
 #include "class.h"
+#include "global.h"
 #include "recordmanip.h"
 #include "addrecord.h"
 #include <iostream>

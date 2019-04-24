@@ -16,7 +16,7 @@
 using namespace std;
 
 int main() {
-    double budget, creditlim = 0;
+    double budget = 0, creditlim = 0;
     ifstream fin;
     //get the monthly budget and credit limit
     fin.open(getmonth() + "budget.txt");

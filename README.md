@@ -22,3 +22,8 @@ Assumptions:
 5.  Budget limit and alert if total expense is greater than or equal to 70% of the budget.
 6.  Easy to use
 7.  Input validation
+
+##Usage:
+Linux: `make all` to compile, `make run` to run the program
+Windows: Run the Account.exe
+

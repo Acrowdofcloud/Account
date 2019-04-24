@@ -15,4 +15,3 @@ bool fileExist(string);
 
 bool StrisNumber(string);
 
-void separation(int);
