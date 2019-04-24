@@ -24,6 +24,8 @@ Assumptions:
 7.  Input validation
 
 ##Usage:
+
 Linux: `make all` to compile, `make run` to run the program
+
 Windows: Run the Account.exe
 
