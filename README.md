@@ -23,7 +23,7 @@ Assumptions:
 6.  Easy to use
 7.  Input validation
 
-##Usage:
+## Usage
 
 Linux: `make all` to compile, `make run` to run the program
 
