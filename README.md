@@ -25,7 +25,13 @@ Assumptions:
 
 ## Usage
 
-Linux: `make all` to compile, `make run` to run the program
+### Linux:
 
-Windows: Run the Account.exe
+`make all` to compile
+
+`make run` to run the program
+
+### Windows:
+
+Run the Account.exe
 
