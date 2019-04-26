@@ -9,13 +9,13 @@ to manage their incomes and expenses, in order to achieve better self-control on
 
 Assumptions:
 
-1.  Users' inputs follows the instructions
-2.  Limit of records will be 2000 each Month
+1.  Users' inputs follow the instructions
+2.  Limit of records will be ~1000 each Month
 3.  This system is an executable that works in both Linux and Windows environment.
 4.  Users will not input/calculate amount that require more than 15 decimal digits of precision offered by double
 
 ## Features
-1.  Add income or expense record(amount, date, type, account)
+1.  Add income or expense records (amount, date, type, account, usage, note)
 2.  Delete or Edit records
 3.  Search and Display records
 4.  Provide statistical report of users' financial state
