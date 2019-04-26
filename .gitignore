@@ -1,6 +1,6 @@
 ## Ignore Code::Blocks files
 *.depend
 *.layout
-#*.cbp
+*.cbp
 **.txt
 #**.exe
